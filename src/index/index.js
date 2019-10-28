@@ -8,6 +8,8 @@ import store from './store';
 import App from './App';
 // import * as serviceWorker from './serviceWorker';
 
+console.log(123);
+
 ReactDOM.render(
   <Provider store={store}>
     <App />

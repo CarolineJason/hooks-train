@@ -15,7 +15,7 @@ function App() {
 
   return (
     <div className="App">
-      index
+      座席选择
     </div>
   );
 }
