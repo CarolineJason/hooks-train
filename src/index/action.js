@@ -1,0 +1,20 @@
+export const ACTION_SET_FORM = 'ACTION_SET_FORM'; // 起点站
+export const ACTION_TO = '上海'; // 终点站
+
+// 城市 弹窗 打开 关闭 状态
+export const ACTION_IS_CITYSELECTORVISIBLE = 'ACTION_IS_CITYSELECTORVISIBLE';
+
+// 起点站 是否 有值
+export const ACTION_CURRENTSELECTINGLEFTCITY = 'ACTION_CURRENTSELECTINGLEFTCITY';
+
+// 城市数据
+export const ACTION_CITYDATA = 'ACTION_CITYDATA';
+
+// 是否正在 加载 城市列表
+export const ACTION_ISLOADINGCITYDATA = 'ACTION_ISLOADINGCITYDATA';
+
+// 日期选择 弹窗 是否打开
+export const ACTION_ISDATESELECTORVISIBLE = 'ACTION_ISDATESELECTORVISIBLE';
+
+// 是否选择了 只看高铁动车
+export const ACTION_HIGHSPEED = 'ACTION_HIGHSPEED';

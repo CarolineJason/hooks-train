@@ -13,7 +13,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      火车票
+      座席选择
       <Header />
       <Journey />
       <DedatePart />

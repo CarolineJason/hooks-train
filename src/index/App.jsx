@@ -15,7 +15,7 @@ function App() {
 
   return (
     <div className="App">
-      座席选择
+      火车票
     </div>
   );
 }

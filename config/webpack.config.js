@@ -145,7 +145,7 @@ module.exports = function (webpackEnv) {
         require.resolve('react-dev-utils/webpackHotDevClient'),
       ].filter(Boolean),
       ticket: [
-        paths.appTicketJs,
+        paths.appTicketsJs,
         isEnvDevelopment &&
         require.resolve('react-dev-utils/webpackHotDevClient'),
       ].filter(Boolean),
@@ -570,7 +570,7 @@ module.exports = function (webpackEnv) {
           {},
           {
             inject: true,
-            template: paths.appTicketHtml,
+            template: paths.appTicketsHtml,
             filename: 'ticket.html',
             chunks: ['ticket'],
           },
