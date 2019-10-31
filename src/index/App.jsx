@@ -1,21 +1,26 @@
-import React,{ useEffect } from 'react';
+import React,{ useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
+
+import Header from '../common/header';
+import Journey from './journey/index';
+import DedatePart from './dePartDate';
+import HighSpeed from './highSpeed';
+import Submit from './submit';
+
 import './App.css';
 
 function App() {
-  useEffect(() => {
-    fetch('/rest')
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        console.log('data:', data);
-      })
-  })
+  const onBack = useCallback(() => {
+    window.history.back();
+  }, []);
 
   return (
     <div className="App">
-      火车票
+      <Header onBack={onBack} title="火车票" />
+      <Journey />
+      <DedatePart />
+      <HighSpeed />
+      <Submit />
     </div>
   );
 }

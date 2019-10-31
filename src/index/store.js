@@ -12,7 +12,7 @@ const store = createStore(
     isCitySelectorVisible: false, // 城市 弹窗 打开 关闭 状态
     currentSelectingLeftCity: false, // 起点站 是否 有值
     cityData: null, // 城市数据
-    departDate: '', // 日期选择 
+    departDate: null, // 日期选择 
     isLoadingCityData: false, // 是否正在 加载 城市列表
     isDateSelectorVisible: false, // 日期选择 弹窗 是否打开
     highSpeed: false, // 是否选择了 只看高铁动车

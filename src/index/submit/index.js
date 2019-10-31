@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './index.css';
 
-export default class DeDatePart extends Component {
+export default class Submit extends Component {
   render() {
     return (
       <div>
-        DeDatePart
+        
       </div>
     )
   }

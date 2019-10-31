@@ -30,7 +30,7 @@ export default {
     }
     return state;
   },
-  departDate(state, action){ // 选择日期
+  departDate(state = null, action){ // 选择日期
     const { type, payload } = action;
     switch (type) {
       case ACTION_DEPART_DATE:
@@ -84,7 +84,7 @@ export default {
     }
     return state;
   },
-  isHighSpeed(state = false, action) { // 是否选择 只看 高铁 动车
+  highSpeed(state = false, action) { // 是否选择 只看 高铁 动车
     const { type, payload } = action;
     switch(type) {
       case ACTION_HIGH_SPEED:

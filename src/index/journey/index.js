@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './index.css';
 
-export default class HighSpeed extends Component {
+export default class Journey extends Component {
   render() {
     return (
       <div>
-        HighSpeed
+        
       </div>
     )
   }
