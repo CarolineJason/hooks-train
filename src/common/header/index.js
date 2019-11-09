@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import './index.css';
+import 'normalize.css/normalize.css';
+import './index.scss';
 
 function Header(props) {
   const { onBack, title } = props;
@@ -9,7 +9,7 @@ function Header(props) {
   return (
     <div className="header">
       <div className="header-back" onClick={onBack}>
-        <svg width="42" height="42">
+        <svg width="40" height="40">
           <polyline
             points="25,13 16,21 25,29"
             stroke="#fff"
@@ -19,7 +19,7 @@ function Header(props) {
         </svg>
       </div>
       <div className="header-title">
-        <h1>{title}</h1>
+        <h3>{title}</h3>
       </div>
     </div>
   )

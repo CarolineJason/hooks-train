@@ -1,0 +1,35 @@
+@import "../../styles/func";
+
+.header {
+  position: fixed;
+  top: 0;
+  background: #1ba9ba;
+  width: 100%;
+  height: vw(40);
+  line-height: vw(40);
+
+  .header-back {
+    position: absolute;
+    top: 0;
+    height: 100%;
+  }
+
+  .header-title {
+    text-align: center;
+    height: 100%;
+    letter-spacing: vw(3);
+    font-size: vw(16);
+    color: #fff;
+
+    h3 {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
+
+
+
+
+
