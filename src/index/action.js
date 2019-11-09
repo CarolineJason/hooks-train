@@ -119,7 +119,9 @@ export const hideDateSelector = () => {
 
 export const exchangeFromTo = () => {
   return (dispatch, getState) => {
-    const { from, to } = getState;
+    const { from, to } = getState();
+    console.log('to:', to);
+    console.log('from:', from);
     dispatch(setForm(to));
     dispatch(setTo(from));
   }

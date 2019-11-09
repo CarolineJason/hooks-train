@@ -1,0 +1,38 @@
+@import "../../styles/func";
+
+.journey {
+  height: vw(40);
+  line-height: vw(40);
+  display: flex;
+
+  .journey-station {
+    flex: 1;
+    text-align: right;
+    width: 30%;
+    height: vw(40);
+    line-height: vw(40);
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+
+    .journey-to {
+      width: 100%;
+      text-align: right;
+      border: none;
+      outline: none;
+    }
+
+    .journey-input {
+      border: none;
+      outline: none;
+      width: 100%;
+    }
+  }
+
+  .journey-switch {
+    flex: 1;
+    width: 30%;
+    height: vw(40);
+    line-height: vw(40);
+    text-align: center;
+  }
+}
