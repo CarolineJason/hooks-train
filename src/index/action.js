@@ -74,25 +74,26 @@ export const toggleHighSpeed = () => {
 export const showCityelector = (currentSelectingLeftCity) => {
   return (dispatch) => {
     dispatch({
-      type: ACTION_IS_DATE_SELECTOR_VISIBLE,
+      type: ACTION_IS_CITY_SELECTOR_VISIBLE,
       payload: true,
     });
 
     dispatch({
       type: ACTION_CURRENT_SELECTING_LEFT_CITY,
-      paylaod: currentSelectingLeftCity,
+      payload: currentSelectingLeftCity,
     })
   }
 }
 
 export const hideCitySelector = () => {
   return {
-    type: ACTION_IS_DATE_SELECTOR_VISIBLE,
+    type: ACTION_IS_CITY_SELECTOR_VISIBLE,
     payload: false,
   }
 }
 
 export const setSelectedCity = (city) => {
+  console.log('city:', city);
   return (dispatch, getState) => {
     const { currentSelectingLeftCity } = getState();
     if (currentSelectingLeftCity) {
@@ -120,9 +121,41 @@ export const hideDateSelector = () => {
 export const exchangeFromTo = () => {
   return (dispatch, getState) => {
     const { from, to } = getState();
-    console.log('to:', to);
-    console.log('from:', from);
     dispatch(setForm(to));
     dispatch(setTo(from));
+  }
+}
+
+// 请求 城市 列表数据
+export function fetchCityData () {
+  return (dispatch, getState) => {
+    const { isLoadingCityData } = getState();
+    console.log('isLoadingCityData:', isLoadingCityData);
+    if (isLoadingCityData) { // 如果正在请求 城市数据， 不再次请求接口
+      return;
+    }
+
+    const cache = JSON.parse(localStorage.getItem('city_data_cache') || '{}');
+
+    if(Date.now() < cache.expires) {
+      dispatch(setCityData(cache.data));
+      return;
+    }
+
+    dispatch(setIsLoadingCityData(true));
+    fetch('/rest/cities?_='+ Date.now())
+      .then(res => res.json())
+      .then((cityData) => {
+        console.log('fetch --- cityData:', cityData);
+        dispatch(setCityData(cityData));
+        dispatch(setIsLoadingCityData(false));
+        localStorage.setItem('city_data_cache', JSON.stringify({
+          expires: Date.now() + 60 * 1000, // 设置过期时间
+          data: cityData,
+        }));
+      })
+      .catch(() => {
+        dispatch(setIsLoadingCityData(false));
+      });
   }
 }

@@ -6,20 +6,30 @@ import Journey from './journey/index';
 import DedatePart from './dePartDate';
 import HighSpeed from './highSpeed';
 import Submit from './submit';
+import CitySelector from '../common/citySelector/citySelector';
 
-import { showCityelector, exchangeFromTo } from './action';
+import {
+  showCityelector,
+  exchangeFromTo,
+  hideCitySelector,
+  fetchCityData,
+} from './action';
 
 import './App.scss';
+import './iconfont/iconfont.css';
 
 function App(props) {
   const {
     from,
     to,
-    showCityelector,
-    exchangeFromTo,
+    dispatchShowCityelector,
+    dispatchExchangeFromTo,
+    isCitySelectorVisible,
+    isLoadingCityData,
+    cityData,
+    dispatchHideCitySelector,
+    dispatchFetchCityData,
   } = props;
-
-  console.log('app:', props);
 
   const onBack = useCallback(() => {
     window.history.back();
@@ -27,11 +37,19 @@ function App(props) {
 
   // 父组件 向 子组件 传递 事件，用useCallback() 包裹起来， 提高渲染性能，防止 子组件其他属性 改变渲染多过程中 会再次 渲染该事件
   const doShowCityelector = useCallback(() => {
-    showCityelector();
+    dispatchShowCityelector(true);
   }, []);
 
   const doExchangeFromTo = useCallback(() => {
-    exchangeFromTo();
+    dispatchExchangeFromTo();
+  }, []);
+
+  const doHideCitySelector = useCallback(() => {
+    dispatchHideCitySelector(false);
+  });
+
+  const doFetchCityData = useCallback(() => {
+    dispatchFetchCityData();
   }, []);
   
 
@@ -50,6 +68,13 @@ function App(props) {
         <DedatePart />
         <HighSpeed />
         <Submit />
+        <CitySelector
+          show={isCitySelectorVisible}
+          isLoading={isLoadingCityData}
+          cityData={cityData}
+          onBack={doHideCitySelector}
+          fetchCityData={doFetchCityData}
+        />
       </form>
     </div>
   );
@@ -60,20 +85,29 @@ const mapState = (state) => {
   return {
     from: state.from,
     to: state.to,
+    isCitySelectorVisible: state.isCitySelectorVisible,
+    cityData: state.cityData,
+    isLoadingCityData: state.isLoadingCityData,
   }
 }
 
 const mapDispatch = (dispatch) => {
   console.log('dispatch:', dispatch);
   return {
-    showCityelector(flag) {
-      console.log('showCityelector');
+    dispatchShowCityelector(flag) {
+      
       dispatch(showCityelector(flag));
     },
-    exchangeFromTo(){
-      console.log('exchangeFromTo');
+    dispatchExchangeFromTo(){
       dispatch(exchangeFromTo());
     },
+    dispatchHideCitySelector(flag) {
+      dispatch(hideCitySelector(flag));
+    },
+    dispatchFetchCityData() {
+      console.log('dispatchFetchCityData');
+      dispatch(fetchCityData());
+    }
   }
 }
 

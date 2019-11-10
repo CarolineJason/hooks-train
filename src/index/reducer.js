@@ -41,6 +41,8 @@ export default {
   },
   isCitySelectorVisible(state  =  false, action){ // 城市选择浮层是否 打开
     const { type, payload } = action;
+    console.log('action:', action);
+    console.log('payload:', payload);
     switch(type) {
       case ACTION_IS_CITY_SELECTOR_VISIBLE:
         return payload;
