@@ -71,7 +71,7 @@ export const toggleHighSpeed = () => {
   }
 }
 
-export const showCityelector = (currentSelectingLeftCity) => {
+export const showCitySelector = (currentSelectingLeftCity) => {
   return (dispatch) => {
     dispatch({
       type: ACTION_IS_CITY_SELECTOR_VISIBLE,
@@ -97,7 +97,7 @@ export const setSelectedCity = (city) => {
   return (dispatch, getState) => {
     const { currentSelectingLeftCity } = getState();
     console.log('currentSelectingLeftCity:', currentSelectingLeftCity);
-    
+
     if (currentSelectingLeftCity) {
       dispatch(setForm(city));
     } else {

@@ -9,7 +9,7 @@ import Submit from './submit';
 import CitySelector from '../common/citySelector/citySelector';
 
 import {
-  showCityelector,
+  showCitySelector,
   exchangeFromTo,
   hideCitySelector,
   fetchCityData,
@@ -31,6 +31,7 @@ function App(props) {
     dispatchHideCitySelector,
     dispatchFetchCityData,
     dispatchCitySelect,
+    
   } = props;
 
   const onBack = useCallback(() => {
@@ -38,8 +39,8 @@ function App(props) {
   }, []);
 
   // 父组件 向 子组件 传递 事件，用useCallback() 包裹起来， 提高渲染性能，防止 子组件其他属性 改变渲染多过程中 会再次 渲染该事件
-  const doShowCityelector = useCallback(() => {
-    dispatchShowCityelector(true);
+  const doShowCityelector = useCallback((flag) => {
+    dispatchShowCityelector(flag);
   }, []);
 
   const doExchangeFromTo = useCallback(() => {
@@ -56,7 +57,7 @@ function App(props) {
   
   const doCitySelect = useCallback((city) => {
     console.log('选择了....:', city);
-    dispatchCitySelect(city)
+    dispatchCitySelect(city);
   }, []);
 
   return (
@@ -68,7 +69,7 @@ function App(props) {
         <Journey
           from={from}
           to={to}
-          showCityelector={doShowCityelector}
+          showCitySelector={doShowCityelector}
           exchangeFromTo={doExchangeFromTo}
         />
         <DedatePart />
@@ -102,7 +103,7 @@ const mapDispatch = (dispatch) => {
   // console.log('dispatch:', dispatch);
   return {
     dispatchShowCityelector(flag) {
-      dispatch(showCityelector(flag));
+      dispatch(showCitySelector(flag));
     },
     dispatchExchangeFromTo(){
       dispatch(exchangeFromTo());

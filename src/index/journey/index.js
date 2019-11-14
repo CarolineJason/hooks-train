@@ -9,14 +9,14 @@ function Journey(props) {
   const {
     from,
     to,
-    showCityelector,
+    showCitySelector,
     exchangeFromTo,
   } = props;
   // console.log('Journey:', props);
 
   return (
     <div className="journey">
-      <div className="journey-station" onClick={() => showCityelector(true)}>
+      <div className="journey-station" onClick={() => showCitySelector(true)}>
         <input
           readOnly
           type="text"
@@ -28,7 +28,7 @@ function Journey(props) {
       <div className="journey-switch" onClick={exchangeFromTo}>
         <img src={switchImg} width="70" height="40" alt="switch" />
       </div>
-      <div className="journey-station" onClick={() => showCityelector(false)}>
+      <div className="journey-station" onClick={() => showCitySelector(false)}>
         <input
           readOnly
           type="text"
