@@ -4,6 +4,7 @@ import PropTypes  from 'prop-types';
 
 import './citySelector.scss';
 
+// 城市 浮层 列表
 function CityList(props) {
   const { cityData, onCitySelect } = props;
   console.log('cityData----:props:', props);
@@ -37,7 +38,13 @@ function CityList(props) {
   )
 }
 
+CityList.propTypes = {
+  cityData: PropTypes.object,
+  onCitySelect: PropTypes.func.isRequired,
+};
 
+
+// 城市 浮层 组件
 function CitySelector (props) {
   const {
     show,
@@ -102,6 +109,7 @@ CitySelector.propTypes = {
   cityData: PropTypes.object,
   onBack: PropTypes.func.isRequired,
   fetchCityData: PropTypes.func.isRequired,
+  onCitySelect: PropTypes.func.isRequired,
 };
 
 export default CitySelector;
