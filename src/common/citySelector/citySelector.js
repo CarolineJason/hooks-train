@@ -4,6 +4,40 @@ import PropTypes  from 'prop-types';
 
 import './citySelector.scss';
 
+function CityList(props) {
+  const { cityData, onCitySelect } = props;
+  console.log('cityData----:props:', props);
+  return (
+    <div className="city-list">
+      <div className="city-rate">
+        {
+          cityData && cityData.cityList && cityData.cityList.map((item, index) => {
+            return (
+              <div className="wrap" key={index.toString()}>
+                <div className="city-title">{item.title}</div>
+                {
+                  item.citys && item.citys.map((city, i) => {
+                    return (
+                      <div
+                        className="city-name"
+                        key={i.toString()}
+                        onClick={() => onCitySelect(city.name)}
+                      >
+                        {city.name}
+                      </div>
+                   );
+                  })
+                }
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+  )
+}
+
+
 function CitySelector (props) {
   const {
     show,
@@ -11,6 +45,7 @@ function CitySelector (props) {
     cityData,
     onBack,
     fetchCityData,
+    onCitySelect,
   } = props;
 
   const [searchKey, setSearchKey] = useState('');
@@ -19,12 +54,11 @@ function CitySelector (props) {
   const key = useMemo(() => searchKey.trim(), [searchKey]); 
   useEffect(() => {
     if (isLoading || cityData || !show) {
-      return false;
+      return;
     }
     fetchCityData();
   }, [isLoading, cityData, show]);
 
-  
   return (
     <div className={classnames('city-selector', { hidden: !show })}>
       <div className="city-search">
@@ -57,6 +91,7 @@ function CitySelector (props) {
             className=" iconfont icon-clear"></i>
         </span>
       </div>
+      <CityList cityData={cityData} onCitySelect={onCitySelect} />
     </div>
   )
 }

@@ -81,7 +81,7 @@ export const showCityelector = (currentSelectingLeftCity) => {
     dispatch({
       type: ACTION_CURRENT_SELECTING_LEFT_CITY,
       payload: currentSelectingLeftCity,
-    })
+    });
   }
 }
 
@@ -96,11 +96,15 @@ export const setSelectedCity = (city) => {
   console.log('city:', city);
   return (dispatch, getState) => {
     const { currentSelectingLeftCity } = getState();
+    console.log('currentSelectingLeftCity:', currentSelectingLeftCity);
+    
     if (currentSelectingLeftCity) {
       dispatch(setForm(city));
     } else {
       dispatch(setTo(city))
     }
+
+    dispatch(hideCitySelector());
   }
 }
 

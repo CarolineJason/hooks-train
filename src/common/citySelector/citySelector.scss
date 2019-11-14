@@ -66,6 +66,29 @@
       font-style: normal;
     }
   }
+
+  .city-list {
+    .city-rate {
+      padding: vw(8) vw(15) vw(10) vw(5);
+      box-sizing: border-box;
+
+      .city-title {
+        height: vw(20);
+        line-height: vw(20);
+        padding: vw(5);
+        font-size: vw(16);
+        background: #ddd;
+        color: #fff;
+      }
+
+      .city-name {
+        height: vw(40);
+        line-height: vw(40);
+        padding-left: vw(20);
+        border-bottom: 1px solid #ccc;
+      }
+    }
+  }
 }
 
 

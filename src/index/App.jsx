@@ -13,6 +13,7 @@ import {
   exchangeFromTo,
   hideCitySelector,
   fetchCityData,
+  setSelectedCity,
 } from './action';
 
 import './App.scss';
@@ -29,6 +30,7 @@ function App(props) {
     cityData,
     dispatchHideCitySelector,
     dispatchFetchCityData,
+    dispatchCitySelect,
   } = props;
 
   const onBack = useCallback(() => {
@@ -52,6 +54,10 @@ function App(props) {
     dispatchFetchCityData();
   }, []);
   
+  const doCitySelect = useCallback((city) => {
+    console.log('选择了....:', city);
+    dispatchCitySelect(city)
+  }, []);
 
   return (
     <div>
@@ -74,6 +80,7 @@ function App(props) {
           cityData={cityData}
           onBack={doHideCitySelector}
           fetchCityData={doFetchCityData}
+          onCitySelect={doCitySelect}
         />
       </form>
     </div>
@@ -81,7 +88,7 @@ function App(props) {
 }
 
 const mapState = (state) => {
-  console.log('state:', state);
+  // console.log('state:', state);
   return {
     from: state.from,
     to: state.to,
@@ -92,10 +99,9 @@ const mapState = (state) => {
 }
 
 const mapDispatch = (dispatch) => {
-  console.log('dispatch:', dispatch);
+  // console.log('dispatch:', dispatch);
   return {
     dispatchShowCityelector(flag) {
-      
       dispatch(showCityelector(flag));
     },
     dispatchExchangeFromTo(){
@@ -107,6 +113,9 @@ const mapDispatch = (dispatch) => {
     dispatchFetchCityData() {
       console.log('dispatchFetchCityData');
       dispatch(fetchCityData());
+    },
+    dispatchCitySelect(city) {
+      dispatch(setSelectedCity(city));
     }
   }
 }

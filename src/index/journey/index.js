@@ -12,7 +12,7 @@ function Journey(props) {
     showCityelector,
     exchangeFromTo,
   } = props;
-  console.log('Journey:', props);
+  // console.log('Journey:', props);
 
   return (
     <div className="journey">
