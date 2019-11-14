@@ -5,7 +5,7 @@ import PropTypes  from 'prop-types';
 import './citySelector.scss';
 
 // 城市 浮层 列表
-function CityList(props) {
+const CityList = memo(function CityList(props) {
   const { cityData, onCitySelect } = props;
   console.log('cityData----:props:', props);
   return (
@@ -36,7 +36,7 @@ function CityList(props) {
       </div>
     </div>
   )
-}
+});
 
 CityList.propTypes = {
   cityData: PropTypes.object,
@@ -45,7 +45,7 @@ CityList.propTypes = {
 
 
 // 城市 浮层 组件
-function CitySelector (props) {
+const CitySelector = memo(function CitySelector (props) {
   const {
     show,
     isLoading,
@@ -101,7 +101,7 @@ function CitySelector (props) {
       <CityList cityData={cityData} onCitySelect={onCitySelect} />
     </div>
   )
-}
+});
 
 CitySelector.propTypes = {
   show: PropTypes.bool.isRequired,
