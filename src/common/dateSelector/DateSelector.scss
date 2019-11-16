@@ -1,0 +1,11 @@
+@import "../../styles/func";
+
+.date-selector {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  min-height: 100%;
+  margin-bottom: vw(70);
+  z-index: 1000;
+}

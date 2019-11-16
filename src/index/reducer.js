@@ -77,6 +77,7 @@ export default {
   },
   isDateSelectorVisible(state = false, action) {// 日期 选择浮层是否 打开
     const { type, payload } = action;
+    console.log(2222, action);
     switch(type) {
       case ACTION_IS_DATE_SELECTOR_VISIBLE:
         return payload;

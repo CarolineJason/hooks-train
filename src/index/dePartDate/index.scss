@@ -1,0 +1,16 @@
+@import "../../styles/func";
+
+.depart-date {
+  height: vw(45);
+  line-height: vw(45);
+  font-size: vw(18);
+  border-bottom: 1px solid #ddd;
+  color: #333;
+  text-align: left;
+  background: #fff;
+
+  .depart-week {
+    font-size: vw(15);
+    color: #888;
+  }
+}

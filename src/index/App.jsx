@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 
 import Header from '../common/header';
 import Journey from './journey/index';
-import DedatePart from './dePartDate';
+import DedatePart from './dePartDate/dePartDate';
 import HighSpeed from './highSpeed';
 import Submit from './submit';
 import CitySelector from '../common/citySelector/citySelector';
+import DateSelector from '../common/dateSelector/DateSelector';
 
 import {
   showCitySelector,
@@ -14,6 +15,8 @@ import {
   hideCitySelector,
   fetchCityData,
   setSelectedCity,
+  showDateSelector,
+  hideDateSelector,
 } from './action';
 
 import './App.scss';
@@ -26,14 +29,18 @@ function App(props) {
     dispatchShowCityelector,
     dispatchExchangeFromTo,
     isCitySelectorVisible,
+    isDateSelectorVisible,
     isLoadingCityData,
     cityData,
     dispatchHideCitySelector,
     dispatchFetchCityData,
     dispatchCitySelect,
-    
+    departDate,
+    dispatchShowDateSelector,
+    dispatchHideDateSelector,
   } = props;
 
+  // 返回 按钮
   const onBack = useCallback(() => {
     window.history.back();
   }, []);
@@ -43,21 +50,35 @@ function App(props) {
     dispatchShowCityelector(flag);
   }, []);
 
+  // 交换 城市 起始站  和 终点站
   const doExchangeFromTo = useCallback(() => {
     dispatchExchangeFromTo();
   }, []);
 
+  // 隐藏 城市 列表
   const doHideCitySelector = useCallback(() => {
     dispatchHideCitySelector(false);
   });
 
+  // 请求城市 列表数据
   const doFetchCityData = useCallback(() => {
     dispatchFetchCityData();
   }, []);
   
+  // 城市 选择
   const doCitySelect = useCallback((city) => {
     console.log('选择了....:', city);
     dispatchCitySelect(city);
+  }, []);
+
+  // 关闭 日期 弹窗 
+  const doHideDateSelector = useCallback(() => {
+    dispatchHideDateSelector();
+  }, []);
+
+  // 日期时间选择
+  const doOnTimeSelect = useCallback(() => {
+    dispatchShowDateSelector();
   }, []);
 
   return (
@@ -65,6 +86,8 @@ function App(props) {
       <div className="header-wrapper">
         <Header onBack={onBack} title="火车票" />
       </div>
+
+      {/* 起点站 -- 终点站 浮层 */}
       <form className="form" action="">
         <Journey
           from={from}
@@ -72,51 +95,69 @@ function App(props) {
           showCitySelector={doShowCityelector}
           exchangeFromTo={doExchangeFromTo}
         />
-        <DedatePart />
+        <DedatePart
+          time={departDate}
+          onTimeSelect={doOnTimeSelect}
+        />
         <HighSpeed />
         <Submit />
-        <CitySelector
-          show={isCitySelectorVisible}
-          isLoading={isLoadingCityData}
-          cityData={cityData}
-          onBack={doHideCitySelector}
-          fetchCityData={doFetchCityData}
-          onCitySelect={doCitySelect}
-        />
       </form>
+      <CitySelector
+        show={isCitySelectorVisible}
+        isLoading={isLoadingCityData}
+        cityData={cityData}
+        onBack={doHideCitySelector}
+        fetchCityData={doFetchCityData}
+        onCitySelect={doCitySelect}
+      />
+      
+      {/* 日期选择 浮层 */}
+      <DateSelector
+        DateSelectorShow={isDateSelectorVisible}
+        onBack={doHideDateSelector}
+      />
     </div>
   );
 }
 
 const mapState = (state) => {
-  // console.log('state:', state);
+  console.log('state:', state);
   return {
     from: state.from,
     to: state.to,
     isCitySelectorVisible: state.isCitySelectorVisible,
     cityData: state.cityData,
     isLoadingCityData: state.isLoadingCityData,
+    departDate: state.departDate,
+    isDateSelectorVisible: state.isDateSelectorVisible,
   }
 }
 
 const mapDispatch = (dispatch) => {
   // console.log('dispatch:', dispatch);
   return {
-    dispatchShowCityelector(flag) {
+    dispatchShowCityelector(flag) { // 打开 城市选择浮层
       dispatch(showCitySelector(flag));
     },
-    dispatchExchangeFromTo(){
+    dispatchExchangeFromTo(){ // 终点站 和 起点站 切换
       dispatch(exchangeFromTo());
     },
-    dispatchHideCitySelector(flag) {
+    dispatchHideCitySelector(flag) {// 关闭 城市选择浮层
       dispatch(hideCitySelector(flag));
     },
-    dispatchFetchCityData() {
+    dispatchFetchCityData() { // 请求城市 列表数据
       console.log('dispatchFetchCityData');
       dispatch(fetchCityData());
     },
-    dispatchCitySelect(city) {
+    dispatchCitySelect(city) { // 城市 选择
       dispatch(setSelectedCity(city));
+    },
+    dispatchShowDateSelector() { // 打开 日期 选择 浮层
+      console.log('日期选择浮层。。。。。');
+      dispatch(showDateSelector());
+    },
+    dispatchHideDateSelector() { // 关闭 日期 选择 浮层
+      dispatch(hideDateSelector);
     }
   }
 }

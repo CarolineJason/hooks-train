@@ -1,0 +1,38 @@
+@import "../../../styles/func";
+
+.city-list {
+  position: relative;
+  margin-top: vw(40);
+  z-index: -1;
+
+  .city-rate {
+    padding: vw(8) vw(25) vw(10) vw(5);
+    box-sizing: border-box;
+
+    .city-title {
+      height: vw(20);
+      line-height: vw(20);
+      padding: vw(5);
+      font-size: vw(16);
+      background: #ddd;
+      color: #fff;
+    }
+
+    .city-name {
+      height: vw(40);
+      line-height: vw(40);
+      padding-left: vw(20);
+      border-bottom: 1px solid #eee;
+    }
+  }
+
+  .city-list-item {
+    position: fixed;
+    height: vw(500);
+    width: vw(20);
+    text-align: center;
+    top: vw(100);
+    right: 0;
+    display: block;
+  }
+}

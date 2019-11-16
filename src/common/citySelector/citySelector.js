@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect, memo } from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import CityList from './CityList';
+import CityList from './cityList/CityList';
 
 import './citySelector.scss';
 
@@ -59,7 +59,7 @@ const CitySelector = memo(function CitySelector (props) {
             className=" iconfont icon-clear"></i>
         </span>
       </div>
-      <CityList cityData={cityData} onCitySelect={onCitySelect} />
+      <CityList cityData={cityData} onCitySelect={onCitySelect} searchKey={searchKey} />
     </div>
   )
 });

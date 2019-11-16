@@ -1,0 +1,16 @@
+@import "../../../styles/func";
+
+.citt-item {
+  height: vw(600);
+  width: vw(20);
+  // background: #ccc;
+
+  .city-item-title {
+    display: block;
+    width: vw(15);
+    height: vw(15);
+    padding: vw(2);
+    color: #1ba9ba;
+    font-style: normal;
+  }
+}

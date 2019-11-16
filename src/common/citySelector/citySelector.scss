@@ -16,6 +16,10 @@
     background: #00a8bc;
     padding: vw(5);
     box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
 
     .search-back {
       position: absolute;
@@ -27,19 +31,19 @@
     }
 
     .search-input-warpper {
-      font-size: 12px;
-      height: 32px;
-      border-radius: 5px;
-      margin-left: 42px;
-      margin-right: 15px;
-      padding-left: 5px;
+      font-size: vw(14);
+      height: vw(32);
+      border-radius: vw(5);
+      margin-left: vw(42);
+      margin-right: vw(15);
+      padding-left: vw(5);
       background: #fff;
       text-align: left;
 
       .search-input {
         width: 80%;
-        font-size: 12px;
-        height: 32px;
+        font-size: vw(14);
+        height: vw(32);
         border: 0;
         color: #333;
         outline: 0;
@@ -47,7 +51,7 @@
         vertical-align: top;
         line-height: 1.5;
         padding: 0;
-        padding-left: 5px;
+        padding-left: vw(5);
       }
     }
 
@@ -59,8 +63,8 @@
 
     .search-clean {
       position: absolute;
-      right: 23px;
-      top: 2px;
+      right: vw(23);
+      top: vw(2);
       color: #ccc;
       font-family: 'yofont';
       font-style: normal;
