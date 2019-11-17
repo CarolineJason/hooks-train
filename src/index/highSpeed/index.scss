@@ -1,0 +1,74 @@
+@import "../../styles/func";
+
+.high-speed {
+  position: relative;
+  height: vw(46);
+  line-height: vw(46);
+  display: flex;
+
+  .high-speed-label {
+    text-align: left;
+    color: #888;
+    font-size: vw(15);
+    flex: 1;
+  }
+
+  .high-speed-switch {
+    position: relative;
+    text-align: right;
+    flex: 1;
+
+    .high-speed-track {
+      display: inline-block;
+      position: relative;
+      width: vw(50);
+      height: vw(30);
+      padding: vw(1);
+      border-radius: vw(16);
+      background-color: #ccc;
+      vertical-align: middle;
+      box-sizing: border-box;
+
+      .high-speed-handle {
+        position: absolute;
+        z-index: 1000;
+        top: vw(1);
+        left: vw(1);
+        width: vw(28);
+        height: vw(28);
+        border-radius: 50%;
+        background-color: #fff;
+        box-shadow: 0 vw(1) vw(3) rgba(0, 0, 0, 0.3);
+        transition: transform 0.1s ease-out;
+        box-sizing: border-box;
+        
+      }
+
+      .checked {
+        transform: translateX(vw(20));
+      }
+      
+      .checked::after {
+        transform: scale(0);
+      }
+    }
+
+    .checked {
+      background-color: #1ba9ba;
+    }
+
+    .high-speed-track::after {
+      position: absolute;
+      left: vw(15);
+      content: ' ';
+      width: vw(34);
+      height: vw(28);
+      background-color: #fafafa;
+      border-radius: 0 vw(15) vw(15) 0;
+      transition: transform 0.13s ease-out;
+    } 
+  }
+}
+
+
+

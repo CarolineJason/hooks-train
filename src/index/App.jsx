@@ -19,6 +19,7 @@ import {
   showDateSelector,
   hideDateSelector,
   setDepartDate,
+  toggleHighSpeed,
 } from './action';
 
 import './App.scss';
@@ -41,6 +42,8 @@ function App(props) {
     dispatchShowDateSelector,
     dispatchHideDateSelector,
     dispatchOnSelectDate,
+    highSpeed,
+    dispatchToggleHighSpeed,
   } = props;
 
   // 返回 按钮
@@ -97,6 +100,11 @@ function App(props) {
     dispatchOnSelectDate(day);
   }, []);
 
+  // 是否选择 高铁
+  const doToggle = useCallback(() => {
+    dispatchToggleHighSpeed();
+  }, []);
+
   return (
     <div>
       <div className="header-wrapper">
@@ -115,7 +123,10 @@ function App(props) {
           time={departDate}
           onTimeSelect={doOnTimeSelect}
         />
-        <HighSpeed />
+        <HighSpeed
+          HighSpeed={highSpeed}
+          toggle={doToggle}
+        />
         <Submit />
       </form>
       <CitySelector
@@ -138,7 +149,7 @@ function App(props) {
 }
 
 const mapState = (state) => {
-  // console.log('state:', state);
+  console.log('state:', state);
   return {
     from: state.from,
     to: state.to,
@@ -147,6 +158,7 @@ const mapState = (state) => {
     isLoadingCityData: state.isLoadingCityData,
     departDate: state.departDate,
     isDateSelectorVisible: state.isDateSelectorVisible,
+    highSpeed: state.highSpeed,
   }
 }
 
@@ -179,6 +191,10 @@ const mapDispatch = (dispatch) => {
     dispatchOnSelectDate(day) {
       dispatch(setDepartDate(day));
       dispatch(hideDateSelector());
+    },
+    dispatchToggleHighSpeed() {
+      console.log(123123);
+      dispatch(toggleHighSpeed());
     }
   }
 }
