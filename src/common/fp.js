@@ -5,6 +5,6 @@ export const dateTransform = (timeStamp = Date.now()) => {
   target.setSeconds(0); // 设置 秒 为 0
   target.setMilliseconds(0); // 设置 毫秒 为 0
 
-  console.log('target:', target);
+  // console.log('target:', target);
   return target.getTime();
 }

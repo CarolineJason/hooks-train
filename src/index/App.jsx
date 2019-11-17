@@ -8,6 +8,7 @@ import HighSpeed from './highSpeed';
 import Submit from './submit';
 import CitySelector from '../common/citySelector/citySelector';
 import DateSelector from '../common/dateSelector/DateSelector';
+import { dateTransform } from '../common/fp';
 
 import {
   showCitySelector,
@@ -17,6 +18,7 @@ import {
   setSelectedCity,
   showDateSelector,
   hideDateSelector,
+  setDepartDate,
 } from './action';
 
 import './App.scss';
@@ -38,6 +40,7 @@ function App(props) {
     departDate,
     dispatchShowDateSelector,
     dispatchHideDateSelector,
+    dispatchOnSelectDate,
   } = props;
 
   // 返回 按钮
@@ -67,7 +70,6 @@ function App(props) {
   
   // 城市 选择
   const doCitySelect = useCallback((city) => {
-    console.log('选择了....:', city);
     dispatchCitySelect(city);
   }, []);
 
@@ -79,6 +81,21 @@ function App(props) {
   // 日期时间选择
   const doOnTimeSelect = useCallback(() => {
     dispatchShowDateSelector();
+  }, []);
+
+  // 日期选择 
+  const onSelectDate = useCallback((day) => {
+    console.log('day:', day);
+    if (!day) {
+      return;
+    }
+
+    if (day < dateTransform()) {
+      alert(2);
+      return;
+    }
+
+    dispatchOnSelectDate(day);
   }, []);
 
   return (
@@ -115,13 +132,14 @@ function App(props) {
       <DateSelector
         DateSelectorShow={isDateSelectorVisible}
         onBack={doHideDateSelector}
+        onSelect={onSelectDate}
       />
     </div>
   );
 }
 
 const mapState = (state) => {
-  console.log('state:', state);
+  // console.log('state:', state);
   return {
     from: state.from,
     to: state.to,
@@ -146,18 +164,22 @@ const mapDispatch = (dispatch) => {
       dispatch(hideCitySelector(flag));
     },
     dispatchFetchCityData() { // 请求城市 列表数据
-      console.log('dispatchFetchCityData');
+      // console.log('dispatchFetchCityData');
       dispatch(fetchCityData());
     },
     dispatchCitySelect(city) { // 城市 选择
       dispatch(setSelectedCity(city));
     },
     dispatchShowDateSelector() { // 打开 日期 选择 浮层
-      console.log('日期选择浮层。。。。。');
+      // console.log('日期选择浮层。。。。。');
       dispatch(showDateSelector());
     },
     dispatchHideDateSelector() { // 关闭 日期 选择 浮层
-      dispatch(hideDateSelector);
+      dispatch(hideDateSelector());
+    },
+    dispatchOnSelectDate(day) {
+      dispatch(setDepartDate(day));
+      dispatch(hideDateSelector());
     }
   }
 }
