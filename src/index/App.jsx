@@ -91,7 +91,6 @@ function App(props) {
     }
 
     if (day < dateTransform()) {
-      alert(2);
       return;
     }
 
