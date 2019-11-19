@@ -1,11 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import './App.css';
+import DateNav from '../common/dateNav/DateNav';
+import List from './List/List';
+import Bottom from './Bottom/Bottom';
+import './App.scss';
 
-function App() {
+function App(props) {
   return (
     <div className="App">
-      query
+      <DateNav />
+      <List />
+      <Bottom />
     </div>
   );
 }
