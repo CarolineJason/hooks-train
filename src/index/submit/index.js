@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import './index.css';
+import React from 'react';
+import './index.scss';
 
-export default class Submit extends Component {
-  render() {
-    return (
-      <div>
-        
-      </div>
-    )
-  }
+function Submit(){
+  return (
+    <div className="submit">
+      <button type="submit" className="submit-button"> 搜索 </button>
+    </div>
+  )
 }
+
+export default Submit;

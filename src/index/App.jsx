@@ -112,7 +112,7 @@ function App(props) {
       </div>
 
       {/* 起点站 -- 终点站 浮层 */}
-      <form className="form" action="">
+      <form className="form" action="./query.html">
         <Journey
           from={from}
           to={to}
@@ -129,6 +129,8 @@ function App(props) {
         />
         <Submit />
       </form>
+      
+      {/* 城市 选择 浮层 */}
       <CitySelector
         show={isCitySelectorVisible}
         isLoading={isLoadingCityData}

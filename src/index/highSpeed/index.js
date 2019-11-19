@@ -12,12 +12,12 @@ function HighSpeed(props){
         <input type="hidden" name="high-speed" value={HighSpeed} />
         <div
           className={classnames('high-speed-track', {
-            checkd: HighSpeed
+            checked: HighSpeed
           })}
         >
           <span
             className={classnames('high-speed-handle', {
-              checkd: HighSpeed
+              checked: HighSpeed
             })}
           >
           </span>

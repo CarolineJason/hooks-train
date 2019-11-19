@@ -1,0 +1,20 @@
+@import "../../styles/func";
+
+.submit {
+  padding: vw(10) 0 vw(17) 0;
+
+  .submit-button {
+    width: 100%;
+    height: vw(40);
+    line-height: vw(40);
+    border: 0;
+    padding: 0;
+    margin: 0;
+    border-radius: vw(6);
+    display: block;
+    color: #fff;
+    background: #f90;
+    font-size: vw(20);
+    font-weight: bold;
+  }
+}

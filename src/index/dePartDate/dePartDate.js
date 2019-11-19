@@ -23,7 +23,7 @@ function DeDatePart(props){
 
   return (
     <div className="depart-date" onClick={onTimeSelect}>
-      <input type="hidden" value={transTimeString} />
+      <input type="hidden" name="date" value={transTimeString} />
       {transTimeString}&nbsp;
       <span className="depart-week">{weekString}</span>
     </div>
