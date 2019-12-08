@@ -1,7 +1,7 @@
 import { ORDER_DUATION, ORDER_DEPART } from "./constant";
 import { dateTransform } from '../common/fp';
 //定义 各种 actionType
-export const ACTION_SET_FROM = 'ACTION_SET_from';
+export const ACTION_SET_FROM = 'ACTION_SET_FROM';
 export const ACTION_SET_TO = 'ACTION_SET_TO';
 export const ACTION_SET_DEPART_DATE = 'ACTION_SET_DEPARTDATE';
 export const ACTION_SET_HIGH_SPEED = 'ACTION_SET_HIGHSPEED';
@@ -24,13 +24,14 @@ export const ACTION_SET_IS_FILTERS_VISIBLE = 'ACTION_SET_IS_FILTERS_VISIBLE';
 export const ACTION_SET_SEARCH_PARSED = 'ACTION_SET_SEARCH_PARSED';
 
 
-// 定义 action
+// 定义 actionCreators
 
 // 起点站
 export function setFrom(from) {
+  console.log('from:', from);
   return {
     type: ACTION_SET_FROM,
-    palaod: from,
+    payload: from,
   };
 };
 
@@ -38,7 +39,7 @@ export function setFrom(from) {
 export function setTo(to) {
   return {
     type: ACTION_SET_TO,
-    palaod: to,
+    payload: to,
   };
 };
 
@@ -46,7 +47,7 @@ export function setTo(to) {
 export function setDepartDate(departDate) {
   return {
     type: ACTION_SET_DEPART_DATE,
-    palaod: departDate,
+    payload: departDate,
   };
 };
 
@@ -54,7 +55,7 @@ export function setDepartDate(departDate) {
 export function setHighSpeed(highspeed) {
   return {
     type: ACTION_SET_HIGH_SPEED,
-    palaod: highspeed,
+    payload: highspeed,
   };
 };
 
@@ -70,7 +71,7 @@ export function toggleHighSpeed() {
 export function setTrainList(trainList) {
   return {
     type: ACTION_SET_TRAIN_LIST,
-    palaod: trainList,
+    payload: trainList,
   };
 };
 
@@ -81,12 +82,12 @@ export function toggleOrderType() {
     if (orderType === ORDER_DEPART) {
       dispatch({
         type: ACTION_SET_ORDER_TYPE,
-        palaod: ORDER_DUATION,
+        payload: ORDER_DUATION,
       });
     } else {
        dispatch({
         type: ACTION_SET_ORDER_TYPE,
-        palaod: ORDER_DEPART,
+        payload: ORDER_DEPART,
       });
     }
   };
@@ -98,7 +99,7 @@ export function toggleOnlyTickets() {
     const { onlyTickets } = getState();
     dispatch({
       type: ACTION_SET_ONLY_TICKETS,
-      palaod: !onlyTickets,
+      payload: !onlyTickets,
     });
   }
 };
@@ -107,7 +108,7 @@ export function toggleOnlyTickets() {
 export function setTicketTypes(ticketTypes) {
   return {
     type: ACTION_SET_TICKETS_TYPE,
-    palaod: ticketTypes,
+    payload: ticketTypes,
   };
 };
 
@@ -115,7 +116,7 @@ export function setTicketTypes(ticketTypes) {
 export function setCheckedTicketsTypes(checkedTicketsTypes) {
   return {
     type: ACTION_SET_CHECKED_TICKETS_TYPE,
-    palaod: checkedTicketsTypes,
+    payload: checkedTicketsTypes,
   };
 };
 
@@ -123,7 +124,7 @@ export function setCheckedTicketsTypes(checkedTicketsTypes) {
 export function setTrainTypes(trainTypes) {
   return {
     type: ACTION_SET_TRAIN_TYPE,
-    palaod: trainTypes,
+    payload: trainTypes,
   };
 };
 
@@ -131,7 +132,7 @@ export function setTrainTypes(trainTypes) {
 export function setCheckedTrainTypes(checkedTrainTypes) {
   return {
     type: ACTION_SET_CHECKED_TRAIN_TYPE,
-    palaod: checkedTrainTypes,
+    payload: checkedTrainTypes,
   };
 };
 
@@ -139,7 +140,7 @@ export function setCheckedTrainTypes(checkedTrainTypes) {
 export function setDepartStations(departStations) {
   return {
     type: ACTION_SET_DEPART_STATIONS,
-    palaod: departStations,
+    payload: departStations,
   };
 };
 
@@ -147,7 +148,7 @@ export function setDepartStations(departStations) {
 export function setCheckedDepartStations(checkedDepartStations) {
   return {
     type: ACTION_SET_CHECKED_DEPART_STATIONS,
-    palaod: checkedDepartStations,
+    payload: checkedDepartStations,
   };
 };
 
@@ -155,7 +156,7 @@ export function setCheckedDepartStations(checkedDepartStations) {
 export function setArriveStations(arriveStations) {
   return {
     type: ACTION_SET_ARRIVE_STATIONS,
-    palaod: arriveStations,
+    payload: arriveStations,
   };
 };
 
@@ -163,7 +164,7 @@ export function setArriveStations(arriveStations) {
 export function setCheckedArriveStations(checkedArriveStations) {
   return {
     type: ACTION_SET_CHECKED_ARRIVE_STATIONS,
-    palaod: checkedArriveStations,
+    payload: checkedArriveStations,
   };
 };
 
@@ -171,7 +172,7 @@ export function setCheckedArriveStations(checkedArriveStations) {
 export function setDepartTimeStart(departTimeStart) {
   return {
     type: ACTION_SET_DEPART_TIME_START,
-    palaod: departTimeStart,
+    payload: departTimeStart,
   };
 };
 
@@ -179,19 +180,19 @@ export function setDepartTimeStart(departTimeStart) {
 export function setDepartTimeEnd(departTimeEnd) {
   return {
     type: ACTION_SET_DEPART_TIME_END,
-    palaod: departTimeEnd,
+    payload: departTimeEnd,
   };
 };
 export function setArriveTimeStart(arriveTimeStart) {
   return {
     type: ACTION_SET_ARRIVE_TIME_START,
-    palaod: arriveTimeStart
+    payload: arriveTimeStart
   };
 };
 export function setArriveTimeEnd(arriveTimeEnd) {
   return {
     type: ACTION_SET_ARRIVE_TIME_END,
-    palaod: arriveTimeEnd,
+    payload: arriveTimeEnd,
   };
 };
 
@@ -201,7 +202,7 @@ export function setIsFiltersVisile() {
     const { isFiltersVisile } = getState();
     dispatch({
       type: ACTION_SET_IS_FILTERS_VISIBLE,
-      palaod: !isFiltersVisile,
+      payload: !isFiltersVisile,
     });
   }
 };
@@ -210,7 +211,7 @@ export function setIsFiltersVisile() {
 export function setSearchParsed(searchParsed) {
   return {
     type: ACTION_SET_SEARCH_PARSED,
-    palaod: searchParsed,
+    payload: searchParsed,
   };
 };
 

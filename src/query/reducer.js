@@ -26,12 +26,14 @@ import { ORDER_DUATION } from './constant';
 export default {
   from(state = null, action) {
     const { type, payload } = action;
+    console.log('action:', action);
+    console.log('type:', type);
+    console.log('payload:', payload);
     switch(type) {
       case ACTION_SET_FROM:
         return payload;
       default: 
     }
-    return state;
     return state;
   },
   to(state = null, action) {
