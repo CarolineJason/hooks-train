@@ -7,6 +7,6 @@ function List(props) {
   );
 }
 
-List.prototype = {};
+List.propTypes = {};
 
 export default List;
