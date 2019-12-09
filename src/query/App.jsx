@@ -17,6 +17,8 @@ import {
   setTrainTypes,
   setDepartStations,
   setArriveStations,
+  prevDate,
+  nextDate
 } from './action';
 
 import Header from '../common/header'
@@ -127,12 +129,37 @@ function App(props) {
     arriveTimeEnd,
   ]);
 
+  const isPrevDisabled = dateTransform(departDate) <= dateTransform();
+  const isNextDisabled = dateTransform(departDate) - dateTransform() > 20 * 86400 * 1000
+
+  const prev = useCallback(() => {
+    if (isPrevDisabled) {
+      return;
+    }
+    dispatch(prevDate());
+  }, [isPrevDisabled]);
+
+  const next = useCallback(() => {
+    if (isNextDisabled) {
+      return;
+    }
+    dispatch(nextDate());
+  }, [isNextDisabled]);
+
   return (
     <div className="App">
       <div className="header-wrapper">
         <Header title={`${from} => ${to}`} onBack={onBack} />
       </div>
-      <DateNav />
+      <div className="nav-wrapper">
+        <DateNav
+          date={departDate}
+          prev={prev}
+          next={next}
+          isPrevDisabled={isPrevDisabled}
+          isNextDisabled={isNextDisabled}
+        />
+      </div>
       <List />
       <BottomSelect />
     </div>
