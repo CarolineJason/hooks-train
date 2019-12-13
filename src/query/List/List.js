@@ -1,8 +1,8 @@
-import React, { memo } from 'react';
+import React, { memo, useMemo } from 'react';
 import PropTypes from 'prop-types';
+import URI from 'urijs';
 
 import './List.scss';
-
 
 const ListItem = memo(function ListItem(props) {
   const {
@@ -17,9 +17,18 @@ const ListItem = memo(function ListItem(props) {
     dayAfter,
   } = props;
 
+  const url = useMemo(() => {
+    return new URI('ticket.html')
+              .setSearch('date', date)
+              .setSearch('trainNumber', trainNumber)
+              .setSearch('aStation', aStation)
+              .setSearch('dStation', dStation)
+              .toString();
+  }, [date, trainNumber, aStation, dStation]);
+
   return (
     <li className="list-item">
-      <a href="">
+      <a href={url}>
         <span className="item-time">
           <em>{dTime}</em>
           <br/>
