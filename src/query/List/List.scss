@@ -1,1 +1,95 @@
-@import "../styles/func";
+@import "../../styles/func";
+
+.list {
+  padding: 0 0 0 vw(15);
+  margin: 0;
+  list-style: none;
+  line-height: 1.5;
+}
+
+.list-item {
+  overflow: hidden;
+  padding: vw(10) vw(10) vw(10) 0;
+  border-bottom: 1px solid #ececec;
+  list-style: none;
+  margin: 0;
+}
+
+.list-item a {
+  display: block;
+  color: #333;
+}
+
+.list-item a::after {
+  display: block;
+  clear: both;
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+  font-size: 0;
+  content: '';
+}
+
+.list-item em,
+.list-item i {
+  font-style: normal;
+}
+
+.item-time {
+  float: left;
+  width: 18%;
+}
+
+.item-stations {
+  float: left;
+  width: 33%;
+}
+
+.item-train {
+  float: left;
+  width: 21%;
+}
+
+.item-ticket {
+  float: left;
+  width: 28%;
+  text-align: right;
+  color: #f90;
+}
+
+.em-light {
+  color: #666;
+  font-size: vw(14);
+}
+
+.em-light-orange {
+  color: #f90;
+  font-size: vw(14);
+}
+
+.train-station {
+  display: inline-block;
+  width: vw(16);
+  height: vw(16);
+  margin-right: vw(5);
+  border-radius: vw(10);
+  border: 1px solid #3cc;
+  font-size: vw(12);
+  color: #3cc;
+  text-align: center;
+  font-family: '宋体';
+}
+
+.train-start {
+  border: 1px solid #3cc;
+  color: #3cc;
+}
+
+.train-end {
+  border: 1px solid #39c381;
+  color: #39c381;
+}
+
+.time-after {
+  color: red;
+}

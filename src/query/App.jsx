@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import URI from 'urijs';
 import dayjs from 'dayjs';
 import { dateTransform } from '../common/fp';
+import useNav from '../common/useNav';
 
 // 引入 action
 import {
@@ -29,6 +30,7 @@ import './App.scss';
 
 function App(props) {
   const {
+    trainList,
     to,
     from,
     departDate,
@@ -52,7 +54,6 @@ function App(props) {
   }, []);
 
   useEffect(() => {
-    
     const queries = URI.parseQuery(window.location.search);
     const { from, to, date, highSpeed } = queries;
     console.log('queries:', queries);
@@ -129,22 +130,12 @@ function App(props) {
     arriveTimeEnd,
   ]);
 
-  const isPrevDisabled = dateTransform(departDate) <= dateTransform();
-  const isNextDisabled = dateTransform(departDate) - dateTransform() > 20 * 86400 * 1000
-
-  const prev = useCallback(() => {
-    if (isPrevDisabled) {
-      return;
-    }
-    dispatch(prevDate());
-  }, [isPrevDisabled]);
-
-  const next = useCallback(() => {
-    if (isNextDisabled) {
-      return;
-    }
-    dispatch(nextDate());
-  }, [isNextDisabled]);
+  const {
+    isPrevDisabled,
+    isNextDisabled,
+    prev,
+    next,
+  } = useNav(departDate, dispatch, prevDate, nextDate);
 
   return (
     <div className="App">
@@ -160,7 +151,7 @@ function App(props) {
           isNextDisabled={isNextDisabled}
         />
       </div>
-      <List />
+      <List list={trainList} />
       <BottomSelect />
     </div>
   );
