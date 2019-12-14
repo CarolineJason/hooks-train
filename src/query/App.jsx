@@ -19,7 +19,11 @@ import {
   setDepartStations,
   setArriveStations,
   prevDate,
-  nextDate
+  nextDate,
+  toggleOrderType,
+  toggleHighSpeed,
+  toggleOnlyTickets,
+  setIsFiltersVisile,
 } from './action';
 
 import Header from '../common/header'
@@ -27,6 +31,7 @@ import DateNav from '../common/dateNav/DateNav';
 import List from './List/List';
 import BottomSelect from './BottomSelect/BottomSelect';
 import './App.scss';
+import './iconfont/iconfont.css';
 
 function App(props) {
   const {
@@ -38,6 +43,7 @@ function App(props) {
     searchParsed,
     orderType,
     onlyTickets,
+    isFiltersVisible,
     checkedTicketsTypes,
     checkedTrainTypes,
     checkedDepartStations,
@@ -137,6 +143,20 @@ function App(props) {
     next,
   } = useNav(departDate, dispatch, prevDate, nextDate);
 
+  // 给bottom 组件 传 事件
+  const dispatchToggleOrderType = useCallback(() => {
+    dispatch(toggleOrderType());
+  }, []);
+  const dispatchToggleHighSpeed = useCallback(() => {
+    dispatch(toggleHighSpeed());
+  }, []);
+  const dispatchToggleOnlyTickets = useCallback(() => {
+    dispatch(toggleOnlyTickets());
+  }, []);
+  const dispatchSetIsFiltersVisile = useCallback(() => {
+    dispatch(setIsFiltersVisile());
+  }, []);
+
   return (
     <div className="App">
       <div className="header-wrapper">
@@ -152,7 +172,17 @@ function App(props) {
         />
       </div>
       <List list={trainList} />
-      <BottomSelect />
+      
+      <BottomSelect
+        highSpeed={highSpeed}
+        orderType={orderType}
+        onlyTickets={onlyTickets}
+        isFiltersVisible={isFiltersVisible}
+        toggleOrderType={dispatchToggleOrderType}
+        toggleHighSpeed={dispatchToggleHighSpeed}
+        toggleOnlyTickets={dispatchToggleOnlyTickets}
+        setIsFiltersVisile={dispatchSetIsFiltersVisile}
+      />
     </div>
   );
 }

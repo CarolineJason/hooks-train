@@ -52,18 +52,18 @@ export function setDepartDate(departDate) {
 };
 
 // 是否 选择 只看高铁动车
-export function setHighSpeed(highspeed) {
+export function setHighSpeed(highSpeed) {
   return {
     type: ACTION_SET_HIGH_SPEED,
-    payload: highspeed,
+    payload: highSpeed,
   };
 };
 
 // 是否选择高铁动车 切换
 export function toggleHighSpeed() {
   return (dispatch, getState) => {
-    const { highspeed } = getState();
-    dispatch(setHighSpeed(!highspeed));
+    const { highSpeed } = getState();
+    dispatch(setHighSpeed(!highSpeed));
   }
 };
 
@@ -199,10 +199,10 @@ export function setArriveTimeEnd(arriveTimeEnd) {
 // 弹窗显示隐藏
 export function setIsFiltersVisile() {
   return (dispatch, getState) => {
-    const { isFiltersVisile } = getState();
+    const { isFiltersVisible } = getState();
     dispatch({
       type: ACTION_SET_IS_FILTERS_VISIBLE,
-      payload: !isFiltersVisile,
+      payload: !isFiltersVisible,
     });
   }
 };
