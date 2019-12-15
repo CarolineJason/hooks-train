@@ -26,9 +26,6 @@ import { ORDER_DUATION } from './constant';
 export default {
   from(state = null, action) {
     const { type, payload } = action;
-    console.log('action:', action);
-    console.log('type:', type);
-    console.log('payload:', payload);
     switch(type) {
       case ACTION_SET_FROM:
         return payload;
@@ -92,6 +89,8 @@ export default {
   },
   ticketTypes(state = [], action) {
     const { type, payload } = action;
+    console.log(9999);
+    console.log(action);
     switch(type) {
       case ACTION_SET_TICKETS_TYPE:
         return payload;

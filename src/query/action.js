@@ -106,6 +106,7 @@ export function toggleOnlyTickets() {
 
 // 票 类型
 export function setTicketTypes(ticketTypes) {
+  console.log('ticketTypes:', ticketTypes);
   return {
     type: ACTION_SET_TICKETS_TYPE,
     payload: ticketTypes,
@@ -197,7 +198,7 @@ export function setArriveTimeEnd(arriveTimeEnd) {
 };
 
 // 弹窗显示隐藏
-export function setIsFiltersVisile() {
+export function toggleIsFiltersVisible() {
   return (dispatch, getState) => {
     const { isFiltersVisible } = getState();
     dispatch({

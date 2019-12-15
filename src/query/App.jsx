@@ -23,7 +23,17 @@ import {
   toggleOrderType,
   toggleHighSpeed,
   toggleOnlyTickets,
-  setIsFiltersVisile,
+  toggleIsFiltersVisible,
+
+  setCheckedTicketsTypes,
+  setCheckedTrainTypes,
+  setCheckedDepartStations,
+  setCheckedArriveStations,
+  setDepartTimeStart,
+  setDepartTimeEnd,
+  setArriveTimeStart,
+  setArriveTimeEnd,
+  
 } from './action';
 
 import Header from '../common/header'
@@ -44,6 +54,12 @@ function App(props) {
     orderType,
     onlyTickets,
     isFiltersVisible,
+
+    // 第四个 tab 筛选浮层
+    ticketType,
+    trainType,
+    depStation,
+    arrStation,
     checkedTicketsTypes,
     checkedTrainTypes,
     checkedDepartStations,
@@ -52,6 +68,7 @@ function App(props) {
     departTimeEnd,
     arriveTimeStart,
     arriveTimeEnd,
+
     dispatch, // 从 props 中 引入 dispatch
   } = props;
 
@@ -105,17 +122,21 @@ function App(props) {
                   depStation,
                   ticketType,
                   trainType,
+                  arriTimeRange,
+                  deptTimeRange,
+                  station,
+                  stationType,
                 }
               }
             }
           } = resp;
 
           dispatch(setTrainList(trains));
-          dispatch(setTicketTypes(ticketType))
-          dispatch(setTrainTypes(trainType))
-          dispatch(setDepartStations(depStation))
-          dispatch(setArriveStations(arrStation))
-        })
+          dispatch(setTicketTypes(ticketType));
+          dispatch(setTrainTypes(trainType));
+          dispatch(setDepartStations(depStation));
+          dispatch(setArriveStations(arrStation));
+        });
     }
   }, [
     // 请求数据的 依赖
@@ -153,14 +174,14 @@ function App(props) {
   const dispatchToggleOnlyTickets = useCallback(() => {
     dispatch(toggleOnlyTickets());
   }, []);
-  const dispatchSetIsFiltersVisile = useCallback(() => {
-    dispatch(setIsFiltersVisile());
+  const dispatchToggleIsFiltersVisile = useCallback(() => {
+    dispatch(toggleIsFiltersVisible());
   }, []);
 
   return (
     <div className="App">
       <div className="header-wrapper">
-        <Header title={`${from} => ${to}`} onBack={onBack} />
+        <Header title={`${from} ➡ ${to}`} onBack={onBack} />
       </div>
       <div className="nav-wrapper">
         <DateNav
@@ -181,8 +202,20 @@ function App(props) {
         toggleOrderType={dispatchToggleOrderType}
         toggleHighSpeed={dispatchToggleHighSpeed}
         toggleOnlyTickets={dispatchToggleOnlyTickets}
-        setIsFiltersVisile={dispatchSetIsFiltersVisile}
-      />
+        toggleIsFiltersVisible={dispatchToggleIsFiltersVisile}
+        ticketTypes={ticketType} // 第四个筛选 弹窗 数据
+        trainTypes={trainType}
+        depStations={depStation}
+        arrStations={arrStation}
+        checkedTicketsTypes={checkedTicketsTypes}
+        checkedTrainTypes={checkedTrainTypes}
+        checkedDepartStations={checkedDepartStations}
+        checkedArriveStations={checkedArriveStations}
+        departTimeStart={departTimeStart}
+        departTimeEnd={departTimeEnd}
+        arriveTimeStart={arriveTimeStart}
+        arriveTimeEnd={arriveTimeEnd}
+        />
     </div>
   );
 }
