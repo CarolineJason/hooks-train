@@ -45,7 +45,7 @@ import './iconfont/iconfont.css';
 
 function App(props) {
   const {
-    trainList,
+    trainList, // 从 props 中 解构 出 数据
     to,
     from,
     departDate,
@@ -56,10 +56,10 @@ function App(props) {
     isFiltersVisible,
 
     // 第四个 tab 筛选浮层
-    ticketType,
-    trainType,
-    depStation,
-    arrStation,
+    ticketTypes,
+    trainTypes,
+    depStations,
+    arrStations,
     checkedTicketsTypes,
     checkedTrainTypes,
     checkedDepartStations,
@@ -203,10 +203,10 @@ function App(props) {
         toggleHighSpeed={dispatchToggleHighSpeed}
         toggleOnlyTickets={dispatchToggleOnlyTickets}
         toggleIsFiltersVisible={dispatchToggleIsFiltersVisile}
-        ticketTypes={ticketType} // 第四个筛选 弹窗 数据
-        trainTypes={trainType}
-        depStations={depStation}
-        arrStations={arrStation}
+        ticketTypes={ticketTypes} // 第四个筛选 弹窗 数据
+        trainTypes={trainTypes}
+        depStations={depStations}
+        arrStations={arrStations}
         checkedTicketsTypes={checkedTicketsTypes}
         checkedTrainTypes={checkedTrainTypes}
         checkedDepartStations={checkedDepartStations}

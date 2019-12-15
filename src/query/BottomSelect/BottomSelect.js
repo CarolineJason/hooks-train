@@ -8,7 +8,7 @@ import { ORDER_DEPART } from '../constant';
 const Filter = memo(function(props) {
   const { name, checked } = props;
   return (
-    <div className={classnames({ 'checked': checked })}>{name}</div>
+    <li className={classnames({ checked })}>{name}</li>
   )
 });
 
@@ -21,7 +21,7 @@ const Options = memo(function Options(props){
   const {
     title,
     options,
-    checkedmap,
+    checkedMap,
   } = props;
   return (
     <div className="options">
@@ -33,7 +33,7 @@ const Options = memo(function Options(props){
               <Filter
                 {...option}
                 key={option.value}
-                checked={option.value in checkedmap}
+                checked={option.value in checkedMap}
               />
             )
           })
@@ -46,7 +46,7 @@ const Options = memo(function Options(props){
 
 Options.prototype = {
   title: PropTypes.string.isRequired,
-  checkedmap: PropTypes.object.isRequired,
+  checkedMap: PropTypes.object.isRequired,
   options: PropTypes.array.isRequired,
 };
 
@@ -104,7 +104,7 @@ const BottomModal = memo(function BottomModal(props) {
         <div className="bottom-dialog-content">
           <div className="title">
             <span className="reset">重制</span>
-            <span className="ok">确定</span>
+            <span className="ok" onClick={toggleIsFiltersVisible}>确定</span>
           </div>
           <div className="optionis">
             {
