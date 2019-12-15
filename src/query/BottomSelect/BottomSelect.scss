@@ -23,8 +23,17 @@
       color: #888;
       font-size: vw(11.8918);
       text-align: center;
-    }
 
+      .icon-slef {
+        display: block;
+        font-size: vw(26);
+      }
+
+      .icon-text {
+        font-size: vw(14);
+      }
+    }
+    
     .item-on {
       color: #3cc;
     }
