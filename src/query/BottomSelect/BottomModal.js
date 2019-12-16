@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import PropTypes from 'prop-types';
 import Options from './Options';
 
@@ -27,29 +27,47 @@ const BottomModal = memo(function BottomModal(props) {
     toggleIsFiltersVisible,
   } = props;
 
+  console.log(111);
+  console.log(props);
+  // 用 useState() 函数 保存 用户的筛选结果
+  const [localTicketTypes, setLocalTicketTypes] = useState(ticketTypes);
+
+  const [localTrainTypes, setLocalTrainTypes] = useState(trainTypes);
+
+  const [localDepStations, setLocalDepStations] = useState(depStations);
+
+  const [localArrStations, setLocalArrStations] = useState(arrStations)
+
+  debugger
+
   const groupOptions = [
     {
       title: '座席类型',
-      options: ticketTypes,
+      options: localTicketTypes,
       checkedMap: checkedTicketsTypes,
+      update: setLocalTicketTypes,
     },
     {
       title: '车次类型',
-      options: trainTypes,
+      options: localTrainTypes,
       checkedMap: checkedTrainTypes,
+      update: setLocalTrainTypes,
     },
     {
       title: '出发车站',
-      options: depStations,
+      options: localDepStations,
       checkedMap: checkedDepartStations,
+      update: setLocalDepStations,
     },
     {
       title: '到达车站',
-      options: arrStations,
+      options: localArrStations,
       checkedMap: checkedArriveStations,
+      update: setLocalArrStations,
     },
   ];
 
+  console.log('groupOptions:', groupOptions);
   return (
     <div className="bottom-modal">
       <div className="bottom-dialog">
