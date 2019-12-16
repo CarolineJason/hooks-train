@@ -26,44 +26,41 @@ const BottomModal = memo(function BottomModal(props) {
     setArriveTimeEnd,
     toggleIsFiltersVisible,
   } = props;
-
-  console.log(111);
-  console.log(props);
+  
   // 用 useState() 函数 保存 用户的筛选结果
-  const [localTicketTypes, setLocalTicketTypes] = useState(ticketTypes);
+  const [localCheckedTicketsTypes, setLocalCheckedTicketsTypes] = useState(checkedTicketsTypes);
 
-  const [localTrainTypes, setLocalTrainTypes] = useState(trainTypes);
+  const [localCheckedTrainTypes, setLocalCheckedTrainTypes] = useState(checkedTrainTypes);
 
-  const [localDepStations, setLocalDepStations] = useState(depStations);
+  const [localCheckedDepartStations, setLocalCheckedDepartStations] = useState(checkedDepartStations);
 
-  const [localArrStations, setLocalArrStations] = useState(arrStations)
+  const [localCheckedArriveStations, setLocalCheckedArriveStations] = useState(checkedArriveStations)
 
-  debugger
 
   const groupOptions = [
     {
       title: '座席类型',
-      options: localTicketTypes,
-      checkedMap: checkedTicketsTypes,
-      update: setLocalTicketTypes,
+      options: ticketTypes,
+      checkedMap: localCheckedTicketsTypes,
+      update: setLocalCheckedTicketsTypes,
     },
     {
       title: '车次类型',
-      options: localTrainTypes,
-      checkedMap: checkedTrainTypes,
-      update: setLocalTrainTypes,
+      options: trainTypes,
+      checkedMap: localCheckedTrainTypes,
+      update: setLocalCheckedTrainTypes,
     },
     {
       title: '出发车站',
-      options: localDepStations,
-      checkedMap: checkedDepartStations,
-      update: setLocalDepStations,
+      options: depStations,
+      checkedMap: localCheckedDepartStations,
+      update: setLocalCheckedDepartStations,
     },
     {
       title: '到达车站',
-      options: localArrStations,
-      checkedMap: checkedArriveStations,
-      update: setLocalArrStations,
+      options: arrStations,
+      checkedMap: localCheckedArriveStations,
+      update: setLocalCheckedArriveStations,
     },
   ];
 

@@ -9,12 +9,12 @@ const Options = memo(function Options(props){
     checkedMap,
     update, // 更新 上一级 组件的 缓存 useState 的数据
   } = props;
-  console.log('props:', props);
 
   // 切换 每一个 被选中的元素
   const toggle = useCallback((value) => {
-    const newCheckedMap = checkedMap;
-    if (value in newCheckedMap) {
+    const newCheckedMap = {...checkedMap};
+    if (value in checkedMap) {
+      alert(1);
       delete newCheckedMap[value];
     } else {
       newCheckedMap[value] = true;
