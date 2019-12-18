@@ -1,5 +1,6 @@
 import React, { memo, useState } from 'react';
 import PropTypes from 'prop-types';
+import TimeSlider from './TimeSlider';
 import Options from './Options';
 
 const BottomModal = memo(function BottomModal(props) {
@@ -26,7 +27,7 @@ const BottomModal = memo(function BottomModal(props) {
     setArriveTimeEnd,
     toggleIsFiltersVisible,
   } = props;
-  
+
   // 用 useState() 函数 保存 用户的筛选结果
   const [localCheckedTicketsTypes, setLocalCheckedTicketsTypes] = useState(checkedTicketsTypes);
 
@@ -37,6 +38,11 @@ const BottomModal = memo(function BottomModal(props) {
   const [localCheckedArriveStations, setLocalCheckedArriveStations] = useState(checkedArriveStations)
 
 
+  const [localDepartTimeStart, setLocalDepartTimeStart] = useState(departTimeStart);
+  const [localDepartTimeEnd, setLocalDepartTimeEnd] = useState(departTimeEnd);
+  const [localArriveTimeStart, setLocalArriveTimeStart] = useState(arriveTimeStart);
+  const [localArriveTimeEnd, setLocalArriveTimeEnd] = useState(arriveTimeEnd);
+  
   const groupOptions = [
     {
       title: '座席类型',
@@ -64,7 +70,7 @@ const BottomModal = memo(function BottomModal(props) {
     },
   ];
 
-  console.log('groupOptions:', groupOptions);
+
   return (
     <div className="bottom-modal">
       <div className="bottom-dialog">
@@ -81,6 +87,20 @@ const BottomModal = memo(function BottomModal(props) {
                 )
               })
             }
+            <TimeSlider 
+              title="出发时间"
+              currentStartHours={localDepartTimeStart}
+              currentEndHours={localDepartTimeEnd}
+              onStartChanged={setLocalDepartTimeStart}
+              onEndChanged={setLocalDepartTimeEnd}
+            />
+            <TimeSlider 
+              title="到达时间"
+              currentStartHours={localArriveTimeStart}
+              currentEndHours={localArriveTimeEnd}
+              onStartChanged={setLocalArriveTimeStart}
+              onEndChanged={setLocalArriveTimeEnd}
+            />
           </div>
         </div>
       </div>

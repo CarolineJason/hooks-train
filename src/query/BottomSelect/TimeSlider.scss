@@ -1,0 +1,45 @@
+@import '../../styles/func.scss';
+
+.range-slider {
+  padding: vw(50) 0 vw(30);
+}
+
+.range-slider .slider {
+  position: relative;
+  width: 60%;
+  height: 1px;
+  margin: 0 auto;
+  background: #c7ced4;
+}
+
+.range-slider .slider .slider-range {
+  position: absolute;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  height: 1px;
+  background: #3cc;
+}
+
+.range-slider .slider .slider-handle {
+  position: absolute;
+  top: 50%;
+  margin-top: vw(-13);
+  margin-left: vw(-17);
+  z-index: 1000;
+  width: vw(25);
+  height: vw(25);
+  background: #fff;
+  border-radius: 50%;
+  border: 1px solid #d0d6db;
+  cursor: pointer;
+  font-style: normal;
+}
+
+.range-slider .slider .slider-handle span {
+  position: absolute;
+  top: vw(-23);
+  left: vw(-6);
+  font-size: vw(15);
+  color: #666;
+}
