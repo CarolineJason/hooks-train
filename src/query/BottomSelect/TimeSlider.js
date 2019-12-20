@@ -1,4 +1,4 @@
-import React, { memo, useMemo, useState } from 'react';
+import React, { memo, useMemo, useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import leftPad from 'left-pad';
 
@@ -12,6 +12,16 @@ const TimeSlider = memo(function TimeSlider(props) {
     onStartChanged,
     onEndChanged,
   } = props;
+
+  // 获取 左右2个 滑块的 dom 节点
+  const startHandle = useRef();
+  const endHandle = useRef();
+
+  const lastStartX = useRef(); // 左侧滑块的上一次 x坐标
+  const lastEndX = useRef(); // 右侧 滑块的上一次 x 坐标
+
+  const range = useRef(); // 获取 slider 滑块的 宽度
+  const rangeWidth = useRef();
 
   const [start, setStart] = useState(() => {
     return currentStartHours / 24 * 100;
@@ -45,11 +55,11 @@ const TimeSlider = memo(function TimeSlider(props) {
   }, [end]);
 
   const startHours = useMemo(() => {
-    return startPercent * 24 / 100;
+    return Math.round(startPercent * 24 / 100);
   }, [startPercent]);
 
   const endHours = useMemo(() => {
-    return endPercent * 24 / 100;
+    return Math.round(endPercent * 24 / 100);
   }, [endPercent]);
 
   const startText = useMemo(() => {
@@ -58,23 +68,75 @@ const TimeSlider = memo(function TimeSlider(props) {
 
   const endText = useMemo(() => {
     return leftPad(endHours, 2, '0') + ':00'; 
-  }, [endHours])
+  }, [endHours]);
+
+  const onStartTouchBegin = (e) => {
+    const touch = e.targetTouches[0];
+    console.log(touch);
+    lastStartX.current = touch.pageX;
+  }
+
+  const onEndTouchBegin = (e) => {
+    const touch = e.targetTouches[0];
+    lastEndX.current = touch.pageX;
+  }
+
+  const onStartTouchMove = (e) => {
+    const touch = e.targetTouches[0];
+    const distance = touch.pageX - lastStartX.current;
+    lastStartX.current = touch.pageX;
+    setStart((start) => start + (distance / rangeWidth.current) * 100)
+  }
+
+  const onEndTouchMove = (e) => {
+    const touch = e.targetTouches[0];
+    const distance = touch.pageX - lastEndX.current;
+    lastEndX.current = touch.pageX;
+    setEnd((end) => end + (distance / rangeWidth.current) * 100)
+  }
+
+
+  // 获取 可 滑动 区域的宽度
+  useEffect(() => {
+    rangeWidth.current = parseFloat(window.getComputedStyle(range.current).width);
+  }, [])
+
+  useEffect(() => {
+    // 给 滑块 绑定 touchstart touchmove 事件
+    startHandle.current.addEventListener('touchstart', onStartTouchBegin, false);
+    startHandle.current.addEventListener('touchmove', onStartTouchMove, false);
+
+    endHandle.current.addEventListener('touchstart', onEndTouchBegin, false);
+    endHandle.current.addEventListener('touchmove', onEndTouchMove, false);
+
+    // 清除函数 
+    return () => {
+      // 解绑事件
+      startHandle.current.removeEventListener('touchstart', onStartTouchBegin, false);
+      startHandle.current.removeEventListener('touchmove', onStartTouchMove, false);
+
+      endHandle.current.removeEventListener('touchstart', onEndTouchBegin, false);
+      endHandle.current.removeEventListener('touchmove', onEndTouchMove, false);
+    }
+    // 副作用 没有 依赖，说明 这个副作用 每次渲染 都会执行一次，因为每次渲染可能 dom 会 重构，有解绑事件 不会 导致 内存泄露 
+  }); 
+
 
   return (
     <div className="options">
       <h3>{title}</h3>
       <div className="range-slider">
-        <div className="slider">
+        <div className="slider" ref={range}>
           <div className="slider-range" style={{
             left: startPercent + '%',
             width: endPercent - startPercent + '%',
           }}></div>
-          <i className="slider-handle" style={{
+          <i ref={startHandle} className="slider-handle" style={{
             left: startPercent + '%'
           }}>
             <span>{startText}</span>
           </i>
-          <i className="slider-handle" style={{
+          <i ref={endHandle} className="slider-handle" style={{
             left: endPercent + '%'
           }}>
             <span>{endText}</span>

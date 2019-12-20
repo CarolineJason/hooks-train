@@ -19,8 +19,8 @@ function Bottom(props) {
 
     ticketTypes,
     trainTypes,
-    depStations,
-    arrStations,
+    departStations,
+    arriveStations,
     checkedTicketsTypes,
     checkedTrainTypes,
     checkedDepartStations,
@@ -85,8 +85,8 @@ function Bottom(props) {
           <BottomModal
             ticketTypes={ticketTypes}
             trainTypes={trainTypes}
-            depStations={depStations}
-            arrStations={arrStations}
+            departStations={departStations}
+            arriveStations={arriveStations}
             checkedTicketsTypes={checkedTicketsTypes}
             checkedTrainTypes={checkedTrainTypes}
             checkedDepartStations={checkedDepartStations}

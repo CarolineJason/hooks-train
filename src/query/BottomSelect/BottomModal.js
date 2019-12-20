@@ -7,8 +7,8 @@ const BottomModal = memo(function BottomModal(props) {
   const {
     ticketTypes,
     trainTypes,
-    depStations,
-    arrStations,
+    departStations,
+    arriveStations,
     checkedTicketsTypes,
     checkedTrainTypes,
     checkedDepartStations,
@@ -58,18 +58,19 @@ const BottomModal = memo(function BottomModal(props) {
     },
     {
       title: '出发车站',
-      options: depStations,
+      options: departStations,
       checkedMap: localCheckedDepartStations,
       update: setLocalCheckedDepartStations,
     },
     {
       title: '到达车站',
-      options: arrStations,
+      options: arriveStations,
       checkedMap: localCheckedArriveStations,
       update: setLocalCheckedArriveStations,
     },
   ];
-
+  console.log(11111);
+  console.log('groupOptions:', groupOptions);
 
   return (
     <div className="bottom-modal">

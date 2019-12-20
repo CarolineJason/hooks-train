@@ -58,8 +58,8 @@ function App(props) {
     // 第四个 tab 筛选浮层
     ticketTypes,
     trainTypes,
-    depStations,
-    arrStations,
+    departStations,
+    arriveStations,
     checkedTicketsTypes,
     checkedTrainTypes,
     checkedDepartStations,
@@ -205,8 +205,8 @@ function App(props) {
         toggleIsFiltersVisible={dispatchToggleIsFiltersVisile}
         ticketTypes={ticketTypes} // 第四个筛选 弹窗 数据
         trainTypes={trainTypes}
-        depStations={depStations}
-        arrStations={arrStations}
+        departStations={departStations}
+        arriveStations={arriveStations}
         checkedTicketsTypes={checkedTicketsTypes}
         checkedTrainTypes={checkedTrainTypes}
         checkedDepartStations={checkedDepartStations}
