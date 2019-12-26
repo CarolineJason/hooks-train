@@ -10,15 +10,20 @@ const Options = memo(function Options(props){
     update, // 更新 上一级 组件的 缓存 useState 的数据
   } = props;
 
-  console.log('options33333:', props);
+  console.log('options:', props);
   // 切换 每一个 被选中的元素
   const toggle = useCallback((value) => {
+    console.log('value:', value);
+    console.log('checkedMap:', checkedMap);
     const newCheckedMap = {...checkedMap};
     if (value in checkedMap) {
       delete newCheckedMap[value];
     } else {
       newCheckedMap[value] = true;
     }
+
+    console.log(123312);
+    console.log('newCheckedMap:', newCheckedMap);
     update(newCheckedMap);
   }, [checkedMap, update]);
 

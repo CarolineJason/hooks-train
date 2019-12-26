@@ -89,8 +89,6 @@ export default {
   },
   ticketTypes(state = [], action) {
     const { type, payload } = action;
-    console.log(9999);
-    console.log(action);
     switch(type) {
       case ACTION_SET_TICKETS_TYPE:
         return payload;

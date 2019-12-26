@@ -69,16 +69,30 @@ const BottomModal = memo(function BottomModal(props) {
       update: setLocalCheckedArriveStations,
     },
   ];
-  console.log(11111);
-  console.log('groupOptions:', groupOptions);
+
+  // 确定  更新 store 中的数据 
+  const sure = () => {
+    setCheckedTicketsTypes(localCheckedTicketsTypes);
+    setCheckedTrainTypes(localCheckedTrainTypes);
+    setCheckedDepartStations(localCheckedDepartStations);
+    setCheckedArriveStations(localCheckedArriveStations);
+
+    setDepartTimeStart(localDepartTimeStart);
+    setDepartTimeEnd(localDepartTimeEnd);
+    setArriveTimeStart(localArriveTimeStart);
+    setArriveTimeEnd(localArriveTimeEnd);
+
+    toggleIsFiltersVisible();
+
+  }
 
   return (
     <div className="bottom-modal">
       <div className="bottom-dialog">
         <div className="bottom-dialog-content">
           <div className="title">
-            <span className="reset">重制</span>
-            <span className="ok" onClick={toggleIsFiltersVisible}>确定</span>
+            <span className="reset">重置</span>
+            <span className="ok" onClick={sure}>确定</span>
           </div>
           <div className="optionis">
             {

@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 
 const Filter = memo(function(props) {
   const { name, checked, value, toggle } = props;
+  // console.log(44);
+  // console.log('props:', props);
   return (
     <li
       className={classnames('', { 'checked' : checked })}

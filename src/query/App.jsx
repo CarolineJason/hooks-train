@@ -33,7 +33,6 @@ import {
   setDepartTimeEnd,
   setArriveTimeStart,
   setArriveTimeEnd,
-  
 } from './action';
 
 import Header from '../common/header'
@@ -79,7 +78,7 @@ function App(props) {
   useEffect(() => {
     const queries = URI.parseQuery(window.location.search);
     const { from, to, date, highSpeed } = queries;
-    console.log('queries:', queries);
+    // console.log('queries:', queries);
     dispatch(setFrom(from));
     dispatch(setTo(to));
     dispatch(setDepartDate(dateTransform(dayjs(date).valueOf())));
@@ -112,7 +111,6 @@ function App(props) {
       fetch(url)
         .then((response) => response.json())
         .then((resp) => {
-          console.log('resp:', resp);
           const {
             dataMap: {
               directTrainInfo: {
@@ -122,10 +120,10 @@ function App(props) {
                   depStation,
                   ticketType,
                   trainType,
-                  arriTimeRange,
-                  deptTimeRange,
-                  station,
-                  stationType,
+                  // arriTimeRange,
+                  // deptTimeRange,
+                  // station,
+                  // stationType,
                 }
               }
             }
@@ -178,6 +176,40 @@ function App(props) {
     dispatch(toggleIsFiltersVisible());
   }, []);
 
+
+  // 筛选条件 选择事件
+  const dispatchSetCheckedTicketsTypes = (ticketData) => {
+    dispatch(setCheckedTicketsTypes(ticketData));
+  }
+
+  const dispatchSetCheckedTrainTypes = (trainData) => {
+    dispatch(setCheckedTrainTypes(trainData));
+  }
+
+  const dispatchSetCheckedDepartStations = (departStationsData) => {
+    dispatch(setCheckedDepartStations(departStationsData));
+  }
+
+  const dispatchSetCheckedArriveStations = (arriveStationsData) => {
+    dispatch(setCheckedArriveStations(arriveStationsData));
+  }
+  
+  const dispatchSetDepartTimeStart = (departTimeStartData) => {
+    dispatch(setDepartTimeStart(departTimeStartData));
+  }
+
+  const dispatchSetDepartTimeEnd = (departTimeEndData) => {
+    dispatch(setDepartTimeEnd(departTimeEndData));
+  }
+
+  const dispatchSetArriveTimeStart = (arriveTimeStartData) => {
+    dispatch(setArriveTimeStart(arriveTimeStartData));
+  }
+
+  const dispatchSetArriveTimeEnd = (arriveTimeEndData) => {
+    dispatch(setArriveTimeEnd(arriveTimeEndData));
+  }
+
   return (
     <div className="App">
       <div className="header-wrapper">
@@ -215,18 +247,27 @@ function App(props) {
         departTimeEnd={departTimeEnd}
         arriveTimeStart={arriveTimeStart}
         arriveTimeEnd={arriveTimeEnd}
+        // 筛选条件 选择事件
+        setCheckedTicketsTypes={dispatchSetCheckedTicketsTypes}
+        setCheckedTrainTypes={dispatchSetCheckedTrainTypes}
+        setCheckedDepartStations={dispatchSetCheckedDepartStations}
+        setCheckedArriveStations={dispatchSetCheckedArriveStations}
+        setDepartTimeStart={dispatchSetDepartTimeStart}
+        setDepartTimeEnd={dispatchSetDepartTimeEnd}
+        setArriveTimeStart={dispatchSetArriveTimeStart}
+        setArriveTimeEnd={dispatchSetArriveTimeEnd}
         />
     </div>
   );
 }
 
 const mapState = (state) => {
-  console.log('query...state:', state);
+  // console.log('query...state:', state);
   return state;
 }
 
 const mapDispatch = (dispatch) => {
-  console.log('query...dispatch:', dispatch);
+  // console.log('query...dispatch:', dispatch);
   return { dispatch }; // 直接返回 dispatch 到 props中
 }
 

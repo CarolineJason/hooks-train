@@ -72,7 +72,6 @@ const TimeSlider = memo(function TimeSlider(props) {
 
   const onStartTouchBegin = (e) => {
     const touch = e.targetTouches[0];
-    console.log(touch);
     lastStartX.current = touch.pageX;
   }
 
@@ -120,6 +119,14 @@ const TimeSlider = memo(function TimeSlider(props) {
     }
     // 副作用 没有 依赖，说明 这个副作用 每次渲染 都会执行一次，因为每次渲染可能 dom 会 重构，有解绑事件 不会 导致 内存泄露 
   }); 
+
+  useEffect(() => {
+      onStartChanged(startHours);
+  }, [startHours]);
+
+  useEffect(() => {
+      onEndChanged(endHours);
+  }, [endHours]);
 
 
   return (
