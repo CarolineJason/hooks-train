@@ -23,12 +23,27 @@ const TimeSlider = memo(function TimeSlider(props) {
   const range = useRef(); // 获取 slider 滑块的 宽度
   const rangeWidth = useRef();
 
+  // 用 useRef() 函数保存 前一次的 currentStartHours 和 currentEndHours 的时间，然后和下一次渲染的时间 做比较
+  const prevCurrentStartHours = useRef(currentStartHours);
+  const prevCurrentEndHours = useRef(currentEndHours);
+
+
   const [start, setStart] = useState(() => {
     return currentStartHours / 24 * 100;
   });
   const [end, setEnd] = useState(() => {
     return currentEndHours / 24 * 100;
   });
+
+  if (prevCurrentStartHours.current !== currentStartHours) {
+    setStart((currentStartHours / 24 )* 100);
+    prevCurrentStartHours.current = currentStartHours;
+  }
+
+  if (prevCurrentEndHours.current !== currentEndHours) {
+    setEnd((currentEndHours / 24 )* 100);
+    prevCurrentEndHours.current = currentEndHours;
+  }
 
   const startPercent = useMemo(() => {
     if (start > 100) {

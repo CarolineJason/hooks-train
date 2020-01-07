@@ -83,7 +83,19 @@ const BottomModal = memo(function BottomModal(props) {
     setArriveTimeEnd(localArriveTimeEnd);
 
     toggleIsFiltersVisible();
+  }
 
+  // 重置
+  const reset = () => {
+    setLocalCheckedTicketsTypes({});
+    setLocalCheckedTrainTypes({});
+    setLocalCheckedDepartStations({});
+    setLocalCheckedArriveStations({});
+
+    setLocalDepartTimeStart(0);
+    setLocalDepartTimeEnd(24);
+    setLocalArriveTimeStart(0);
+    setLocalArriveTimeEnd(24);
   }
 
   return (
@@ -91,7 +103,7 @@ const BottomModal = memo(function BottomModal(props) {
       <div className="bottom-dialog">
         <div className="bottom-dialog-content">
           <div className="title">
-            <span className="reset">重置</span>
+            <span className="reset" onClick={reset}>重置</span>
             <span className="ok" onClick={sure}>确定</span>
           </div>
           <div className="optionis">
