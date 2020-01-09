@@ -1,5 +1,6 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import TimeSlider from './TimeSlider';
 import Options from './Options';
 
@@ -85,8 +86,33 @@ const BottomModal = memo(function BottomModal(props) {
     toggleIsFiltersVisible();
   }
 
+  const isResetDisabled = useMemo(() => {
+    return Object.keys(localCheckedTicketsTypes).length === 0
+    && Object.keys(localCheckedTrainTypes).length === 0
+    && Object.keys(localCheckedDepartStations).length === 0
+    && Object.keys(localCheckedArriveStations).length === 0
+    && localDepartTimeStart === 0
+    && localDepartTimeEnd === 24
+    && localArriveTimeStart === 0
+    && localArriveTimeEnd === 24
+  }, [
+    localCheckedTicketsTypes,
+    localCheckedTrainTypes,
+    localCheckedDepartStations,
+    localCheckedArriveStations,
+    localDepartTimeStart,
+    localDepartTimeEnd,
+    localArriveTimeStart,
+    localArriveTimeEnd
+  ]);
+    
+
   // 重置
   const reset = () => {
+    if (isResetDisabled) {
+      return;
+    }
+
     setLocalCheckedTicketsTypes({});
     setLocalCheckedTrainTypes({});
     setLocalCheckedDepartStations({});
@@ -103,7 +129,9 @@ const BottomModal = memo(function BottomModal(props) {
       <div className="bottom-dialog">
         <div className="bottom-dialog-content">
           <div className="title">
-            <span className="reset" onClick={reset}>重置</span>
+            <span className={classnames('reset', {
+              disabled: isResetDisabled,
+            })} onClick={reset}>重置</span>
             <span className="ok" onClick={sure}>确定</span>
           </div>
           <div className="optionis">
