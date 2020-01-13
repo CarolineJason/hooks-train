@@ -1,3 +1,5 @@
+import { dateTransform } from '../common/fp';
+
 export const ACTION_SET_DEPART_DATE = 'ACTION_SET_DEPART_DATE';
 export const ACTION_SET_ARRIVE_DATE = 'ACTION_SET_ARRIVE_DATE';
 export const ACTION_SET_DEPART_TIME_STR = 'ACTION_SET_DEPART_TIME_STR';
@@ -9,7 +11,6 @@ export const ACTION_SET_DURATION_STR = 'ACTION_SET_DURATION_STR';
 export const ACTION_SET_TICKETS = 'ACTION_SET_TICKETS';
 export const ACTION_SET_IS_SCHEDULE_VISIBLE = 'ACTION_SET_IS_SCHEDULE_VISIBLE';
 export const ACTION_SET_SEARCH_PARSED = 'ACTION_SET_SEARCH_PARSED';
-
 
 export const setDepartDate = (departDate) => {
   return {
@@ -54,7 +55,6 @@ export const setArriveStation = (arriveStation) => {
 }
 
 export const setTrainNumber = (trainNumber) => {
-  console.log(11111, trainNumber);
   return {
     type: ACTION_SET_TRAIN_NUMBER,
     payload: trainNumber
@@ -76,16 +76,18 @@ export const setTickets = (tickets) => {
 }
 
 export const setIsScheduleVisible = (isScheduleVisible) => {
+  console.log('sScheduleVisible..22222:', isScheduleVisible);
   return {
-    type: action_setIsScheduleVisible,
-    payload: ACTION_SET_IS_SCHEDULE_VISIBLE
+    type: ACTION_SET_IS_SCHEDULE_VISIBLE,
+    payload: isScheduleVisible
   }
 }
 
 export const toggleIsScheduleVisible = () => {
   return (dispatch, getState) => {
-    const { sScheduleVisible } = getState;
-    dispatch(setIsScheduleVisible(!sScheduleVisible));
+    const { isScheduleVisible } = getState();
+    console.log('sScheduleVisible....:', isScheduleVisible);
+    dispatch(setIsScheduleVisible(!isScheduleVisible));
   }
 }
 
@@ -93,5 +95,21 @@ export const setSearchParsed = (searchParsed) => {
   return {
     type: ACTION_SET_SEARCH_PARSED,
     payload: searchParsed
+  }
+}
+
+// 后一天
+export function nextDate() {
+  return (dispatch, getState) => {
+    const { departDate } = getState();
+    dispatch(setDepartDate(dateTransform(departDate) + 86400 * 1000));
+  }
+}
+
+// 前一天
+export function prevDate() {
+  return (dispatch, getState) => {
+    const { departDate } = getState();
+    dispatch(setDepartDate(dateTransform(departDate) - 86400 * 1000));
   }
 }

@@ -72,7 +72,6 @@ export default {
     const {type, payload} = action;
     switch(type) {
       case ACTION_SET_TRAIN_NUMBER:
-        console.log('action111:', action);
         return payload;
       default:
     }

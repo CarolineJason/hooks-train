@@ -5,7 +5,6 @@ import './index.scss';
 
 function Header(props) {
   const { onBack, title } = props;
-  console.log('props:', props);
   return (
     <div className="header">
       <div className="header-back" onClick={onBack}>

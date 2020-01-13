@@ -21,6 +21,9 @@ const DateNav = memo(function DateNav(props) {
     return d.format('M月D日 ') + d.locale('zh-cn').format('ddd');
   }, [date]);
 
+  // console.log('date:', date);
+  // console.log('currentString:', currentString);
+
   return (
     <div className="nav">
       <span
