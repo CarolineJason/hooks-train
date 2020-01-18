@@ -41,9 +41,7 @@ export default function Detail(props) {
         <div className="middle">
           <div className="train-name">{trainNumber}</div>
           <div className="train-mid">
-            <span className="left"></span>
-            <span className="schedule" onClick={() => toggleIsScheduleVisible()}>时刻表</span>
-            <span className="right"></span>
+            {props.children}
           </div>
           <div className="train-time">耗时{durationStr}</div>
         </div>
@@ -66,6 +64,6 @@ Detail.propTypes = {
   arriveTimeStr: PropTypes.string,
   trainNumber: PropTypes.string.isRequired,
   durationStr: PropTypes.string,
-  toggleIsScheduleVisible: PropTypes.func.isRequired,
+  // toggleIsScheduleVisible: PropTypes.func.isRequired,
 };
 

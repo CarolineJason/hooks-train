@@ -149,7 +149,7 @@ function App(props) {
         />
       </div>
       <div className="detail-wrapper">
-        <Detail 
+        <Detail
           departDate={departDate}
           arriveDate={arriveDate}
           departStation={departStation}
@@ -158,8 +158,12 @@ function App(props) {
           arriveTimeStr={arriveTimeStr}
           trainNumber={trainNumber}
           durationStr={durationStr}
-          toggleIsScheduleVisible={dispatchToggleIsScheduleVisible}
-        />
+          // toggleIsScheduleVisible={dispatchToggleIsScheduleVisible}
+        >
+          <span className="left"></span>
+          <span className="schedule" onClick={dispatchToggleIsScheduleVisible}>时刻表</span>
+          <span className="right"></span>
+        </Detail>
       </div>
       <channelContext.Provider
         value={{ trainNumber, arriveStation, departStation, departDate }}

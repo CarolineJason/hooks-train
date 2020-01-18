@@ -33,7 +33,6 @@ const Channel = memo(function Channel(props) {
     arriveStation,
     departStation
   ]);
-  console.log('url:', url);
   return (
     <div className="channel">
       <div className="middle">
