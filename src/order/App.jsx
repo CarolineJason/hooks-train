@@ -28,6 +28,7 @@ import {
   hideMenu,
   showGenderMenu,
   showFollowAdule,
+  showTicketTypeMenu,
 } from './action';
 
 import './App.css';
@@ -128,6 +129,10 @@ function App(props) {
     dispatch(showFollowAdule(id));
   }
 
+  const dispatchShowTicketTypeMenu = (id) => {
+    dispatch(showTicketTypeMenu(id));
+  }
+
   return (
     <div className="app">
       <div className="header-wrapper">
@@ -155,6 +160,7 @@ function App(props) {
           updatePassenger={dispatchUpdatePassenger}
           showGenderMenu={dispatchShowGenderMenu}
           showFollowAdule={dispatchShowFollowAdule}
+          showTicketTypeMenu={dispatchShowTicketTypeMenu}
         />
         <Menu
           {...menu}

@@ -210,7 +210,7 @@ export function removePassenger(id) {
 }
 
 //成人 儿童 用户 信息  action
-export function updatePassenger(id, data) {
+export function updatePassenger(id, data, keysToBeRemoved=[]) {
   return (dispatch, getState) => {
     const { passengers } = getState();
 
@@ -218,6 +218,11 @@ export function updatePassenger(id, data) {
       if (passengers[i].id === id) {
         const newPassengers = [...passengers];
         newPassengers[i] = Object.assign({},passengers[i], data);
+
+        for (const key of keysToBeRemoved) {
+          delete newPassengers[i][key];
+        }
+
         dispatch(setPassengers(newPassengers));
         break;
       }
@@ -302,8 +307,41 @@ export function showTicketTypeMenu(id) {
     };
 
     dispatch(showMenu({
-      onPress(){
-        
+      onPress(ticketType){
+        if (ticketType === 'adult') {
+          dispatch(updatePassenger(
+            id,
+            {
+              ticketType,
+              liscenceNo: '',
+            },
+            ['gender', 'followAdult', 'birthday'],
+          ))
+        } else {
+          const adult = passengers.find((passenger) => {
+            return passenger.ticketType === 'adult' && passenger.id !== id;
+          });
+          console.log(12123);
+          console.log(adult);
+          // 从儿童票 切换 到 成人票 要现判断 当前是否有成人， 因为只有最少有一张成人票 才能 添加 儿童票
+          if (adult) {
+            alert(1);
+            dispatch(updatePassenger(
+              id,
+              {
+                ticketType,
+                gender: '',
+                birthday: '',
+                followAdult: adult.id,
+              },
+              ['liscenceNo']
+            ));
+          } else {
+            alert('没有其他成人乘客....');
+          }
+        }
+
+        dispatch(hideMenu());
       },
       options: [
         {
