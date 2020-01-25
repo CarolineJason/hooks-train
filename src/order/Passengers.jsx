@@ -16,7 +16,11 @@ const PassengerItem = memo(function PassengerItem(props){
     removePassenger,
     onUpdate,
     showGenderMenu,
+    showFollowAdule,
   } = props;
+
+  console.log(2222);
+  console.log('PassengerItem.............:', props);
 
   const isAdult = ticketType === 'adult';
 
@@ -90,6 +94,7 @@ const PassengerItem = memo(function PassengerItem(props){
               className="input followAdult"
               placeholder="请选择"
               value={followAdult}
+              onClick={() => showFollowAdule(id)}
               readOnly
             />
           </li>
@@ -111,6 +116,7 @@ PassengerItem.prototype = {
   removePassenger: PropTypes.func.isRequired,
   onUpdate: PropTypes.func.isRequired,
   showGenderMenu: PropTypes.func.isRequired,
+  showFollowAdule: PropTypes.func.isRequired,
 };
 
 
@@ -122,6 +128,7 @@ const Passengers = memo((props) => {
     removePassenger,
     updatePassenger,
     showGenderMenu,
+    showFollowAdule,
   } = props;
   return (
     <div className="passengers">
@@ -134,6 +141,7 @@ const Passengers = memo((props) => {
               removePassenger={removePassenger}
               onUpdate={updatePassenger}
               showGenderMenu={showGenderMenu}
+              showFollowAdule={showFollowAdule}
             />
           })
         }
@@ -153,6 +161,7 @@ Passengers.prototype = {
   removePassenger: PropTypes.func.isRequired,
   updatePassenger: PropTypes.func.isRequired,
   showGenderMenu: PropTypes.func.isRequired,
+  showFollowAdule: PropTypes.func.isRequired,
 };
 
 export default Passengers;

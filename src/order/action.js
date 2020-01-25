@@ -1,3 +1,5 @@
+import Passengers from "./Passengers";
+
 export const ACTION_SET_TRAIN_NUMBER = 'ACTION_SET_TRAIN_NUMBER';
 export const ACTION_SET_DEPART_STATION = 'ACTION_SET_DEPART_STATION';
 export const ACTION_SET_ARRIVE_STATION = 'ACTION_SET_ARRIVE_STATION';
@@ -256,6 +258,65 @@ export function showGenderMenu(id) {
           active: 'female' === passenger.gender,
         }
       ]
+    }))
+  }
+}
+
+export function showFollowAdule(id){
+  return (dispatch, getState) => {
+    const { passengers } = getState();
+    const passenger = passengers.find((passenger) => passenger.id === id);
+
+    if (!passenger) {
+      return;
+    };
+
+    dispatch(showMenu({
+      onPress(followAdult) {
+        console.log(1111);
+        console.log('followAdult:', followAdult);
+        dispatch(updatePassenger(id, { followAdult }));
+        dispatch(hideMenu(false));
+      },
+      options: passengers
+                .filter((passenger) => passenger.ticketType === 'adult')
+                .map((adult) => {
+                  return {
+                    title: adult.name,
+                    value: adult.id,
+                    active: adult.id === passenger.followAdult,
+                  }
+                })
+    }))
+  }
+}
+
+
+export function showTicketTypeMenu(id) {
+  return (dispatch, getState) => {
+    const { passengers } = getState();
+    const passenger = passengers.find((passenger) => passenger.id === id);
+
+    if (!passenger) {
+      return;
+    };
+
+    dispatch(showMenu({
+      onPress(){
+        
+      },
+      options: [
+        {
+          title: '成人票',
+          value: 'adult',
+          active: 'adult' === passenger.ticketType,
+        },
+        {
+          title: '儿童票',
+          value: 'child',
+          active: 'child' === passenger.ticketType,
+        },
+      ],
     }))
   }
 }
