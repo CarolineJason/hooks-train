@@ -54,37 +54,37 @@ function App(props) {
   // 父组件 向 子组件 传递 事件，用useCallback() 包裹起来， 提高渲染性能，防止 子组件其他属性 改变渲染多过程中 会再次 渲染该事件
   const doShowCityelector = useCallback((flag) => {
     dispatchShowCityelector(flag);
-  }, []);
+  }, [dispatchShowCityelector]);
 
   // 交换 城市 起始站  和 终点站
   const doExchangeFromTo = useCallback(() => {
     dispatchExchangeFromTo();
-  }, []);
+  }, [dispatchExchangeFromTo]);
 
   // 隐藏 城市 列表
   const doHideCitySelector = useCallback(() => {
     dispatchHideCitySelector(false);
-  });
+  }, []);
 
   // 请求城市 列表数据
   const doFetchCityData = useCallback(() => {
     dispatchFetchCityData();
-  }, []);
+  }, [dispatchFetchCityData]);
   
   // 城市 选择
   const doCitySelect = useCallback((city) => {
     dispatchCitySelect(city);
-  }, []);
+  }, [dispatchCitySelect]);
 
   // 关闭 日期 弹窗 
   const doHideDateSelector = useCallback(() => {
     dispatchHideDateSelector();
-  }, []);
+  }, [dispatchHideDateSelector]);
 
   // 日期时间选择
   const doOnTimeSelect = useCallback(() => {
     dispatchShowDateSelector();
-  }, []);
+  }, [dispatchShowDateSelector]);
 
   // 日期选择 
   const onSelectDate = useCallback((day) => {
@@ -98,12 +98,12 @@ function App(props) {
     }
 
     dispatchOnSelectDate(day);
-  }, []);
+  }, [dispatchOnSelectDate]);
 
   // 是否选择 高铁
   const doToggle = useCallback(() => {
     dispatchToggleHighSpeed();
-  }, []);
+  }, [dispatchToggleHighSpeed]);
 
   return (
     <div>

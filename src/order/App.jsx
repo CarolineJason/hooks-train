@@ -32,6 +32,7 @@ import {
 } from './action';
 
 import './App.css';
+import '../index/iconfont/iconfont.css';
 
 function App(props) {
   const {
@@ -70,7 +71,7 @@ function App(props) {
     dispatch(setTrainNumber(trainNumber));
     dispatch(setSeatType(type));
     dispatch(setSearchParsed(true));
-  }, []);
+  }, [dispatch]);
 
   // 创建 请求 url
   useEffect(() => {
@@ -86,7 +87,7 @@ function App(props) {
       .toString();
 
       dispatch(fetchInital(url));
-  }, [searchParsed, arriveStation, departStation, seatType, date]);
+  }, [searchParsed, arriveStation, departStation, seatType, date, dispatch]);
 
   const onBack = useCallback(() => {
     window.history.back();
@@ -96,9 +97,9 @@ function App(props) {
     return null;
   };
 
-  const dispatchToggleIsScheduleVisible = () => {
-    dispatch(toggleIsScheduleVisible());
-  }
+  // const dispatchToggleIsScheduleVisible = () => {
+  //   dispatch(toggleIsScheduleVisible());
+  // }
 
   const dispatchCreateAdult = () => {
     dispatch(createAdult());
@@ -162,6 +163,14 @@ function App(props) {
           showFollowAdule={dispatchShowFollowAdule}
           showTicketTypeMenu={dispatchShowTicketTypeMenu}
         />
+        {
+          passengers.length > 0 && 
+          <Choose
+            passengers={passengers}
+            updatePassenger={dispatchUpdatePassenger}
+          />
+        }
+        <Account price={price} length={passengers.length} />
         <Menu
           {...menu}
           show={isMenuVisible}

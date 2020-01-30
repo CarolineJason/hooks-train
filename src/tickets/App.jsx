@@ -1,11 +1,11 @@
-import React, { useEffect, useCallback, lazy, Suspense } from 'react';
+import React, { useEffect, useCallback, Suspense } from 'react';
 import { connect } from 'react-redux';
 import URI from 'urijs';
 import dayjs from 'dayjs';
 import { dateTransform } from '../common/fp';
 import { channelContext } from './context';
-import Loadable from 'react-loadable';
-import Loading from './Loading';
+// import Loadable from 'react-loadable';
+// import Loading from './Loading';
 
 import useNav from '../common/useNav';
 import Header from '../common/header';
@@ -75,7 +75,7 @@ function App(props) {
     dispatch(setArriveStation(aStation));
     dispatch(setTrainNumber(trainNumber));
     dispatch(setSearchParsed(true));
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (!searchParsed) {
@@ -110,7 +110,7 @@ function App(props) {
           console.log('ticket:', err);
         });
 
-  }, [searchParsed, departDate, trainNumber]);
+  }, [searchParsed, departDate, trainNumber, dispatch]);
 
 
   const {

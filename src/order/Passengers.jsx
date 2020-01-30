@@ -7,7 +7,6 @@ const PassengerItem = memo(function PassengerItem(props){
   const {
     id,
     name,
-    followAdult,
     followAdultName,
     ticketType,
     liscenceNo,

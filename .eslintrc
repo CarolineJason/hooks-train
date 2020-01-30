@@ -9,8 +9,7 @@
     "react"
   ],
   "extends": [
-    // "standard",
-    // "standard-react"
+    "react-app"
   ],
   "ecmaFeatures": {
     "jsx": true

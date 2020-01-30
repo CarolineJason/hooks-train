@@ -84,7 +84,7 @@ function App(props) {
     dispatch(setDepartDate(dateTransform(dayjs(date).valueOf())));
     dispatch(setHighSpeed(highSpeed === 'true'));
     dispatch(setSearchParsed(true));
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (!searchParsed) {
@@ -136,24 +136,7 @@ function App(props) {
           dispatch(setArriveStations(arrStation));
         });
     }
-  }, [
-    // 请求数据的 依赖
-    to,
-    from,
-    departDate,
-    highSpeed,
-    searchParsed,
-    orderType,
-    onlyTickets,
-    checkedTicketsTypes,
-    checkedTrainTypes,
-    checkedDepartStations,
-    checkedArriveStations,
-    departTimeStart,
-    departTimeEnd,
-    arriveTimeStart,
-    arriveTimeEnd,
-  ]);
+  }, [to, from, departDate, highSpeed, searchParsed, orderType, onlyTickets, checkedTicketsTypes, checkedTrainTypes, checkedDepartStations, checkedArriveStations, departTimeStart, departTimeEnd, arriveTimeStart, arriveTimeEnd, dispatch]);
 
   const {
     isPrevDisabled,
@@ -165,16 +148,16 @@ function App(props) {
   // 给bottom 组件 传 事件
   const dispatchToggleOrderType = useCallback(() => {
     dispatch(toggleOrderType());
-  }, []);
+  }, [dispatch]);
   const dispatchToggleHighSpeed = useCallback(() => {
     dispatch(toggleHighSpeed());
-  }, []);
+  }, [dispatch]);
   const dispatchToggleOnlyTickets = useCallback(() => {
     dispatch(toggleOnlyTickets());
-  }, []);
+  }, [dispatch]);
   const dispatchToggleIsFiltersVisile = useCallback(() => {
     dispatch(toggleIsFiltersVisible());
-  }, []);
+  }, [dispatch]);
 
 
   // 筛选条件 选择事件
