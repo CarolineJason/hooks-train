@@ -83,22 +83,27 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "format": "eslint src/**/*.{js,jsx,scss} --fix"
+    "format": "eslint src/**/*.{js,jsx} --fix"
   },
   "eslintConfig": {
-    "plugins": [
+    "extends": [
+      "eslint: recommended",
       "react-hooks"
     ],
     "rules": {
-      "react-hooks/rules-of-hooks": "error"
+      "react-hooks/rules-of-hooks": "error",
+      "react/jsx-indent": [
+        "error",
+        4
+      ]
     }
   },
   "lint-staged": {
-    "client/**/*.{js,jsx}": [
+    "src/**/*.{js,jsx}": [
       "eslint --fix",
       "git add"
     ],
-    "client/**/*.css": [
+    "src/**/*.css": [
       "stylelint --fix",
       "git add"
     ]

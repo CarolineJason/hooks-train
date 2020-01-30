@@ -64,7 +64,7 @@ function App(props) {
   // 隐藏 城市 列表
   const doHideCitySelector = useCallback(() => {
     dispatchHideCitySelector(false);
-  }, []);
+  }, [dispatchHideCitySelector]);
 
   // 请求城市 列表数据
   const doFetchCityData = useCallback(() => {

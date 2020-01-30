@@ -1,5 +1,3 @@
-import Passengers from "./Passengers";
-
 export const ACTION_SET_TRAIN_NUMBER = 'ACTION_SET_TRAIN_NUMBER';
 export const ACTION_SET_DEPART_STATION = 'ACTION_SET_DEPART_STATION';
 export const ACTION_SET_ARRIVE_STATION = 'ACTION_SET_ARRIVE_STATION';
@@ -174,7 +172,7 @@ export function createChild () {
         }
       }
 
-      if(passenger.ticketType = 'adult') {
+      if(passenger.ticketType === 'adult') {
         adultFound = passenger.id;
       }
     }
