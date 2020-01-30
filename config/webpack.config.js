@@ -511,7 +511,7 @@ module.exports = function (webpackEnv) {
     plugins: [
       process.env.GENERATE_BUNDLE_ANALYZER === 'true' &&
       new BundleAnalyzerPlugin({
-        openAnalyzer: false,
+        openAnalyzer: false, // build 之后是否打开 8888 端口的服务器
         analyzerMode: 'static',
       }),
       // Generates an `index.html` file with the <script> injected.

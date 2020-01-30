@@ -19,7 +19,7 @@ export default function Detail(props) {
     arriveTimeStr,
     trainNumber,
     durationStr,
-    toggleIsScheduleVisible,
+    // toggleIsScheduleVisible,
   } = props;
 
   const departDateString = useMemo(() => {
