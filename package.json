@@ -83,7 +83,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "format": "eslint src/**/*.{js,jsx} --fix"
+    "format": "eslint src/**/*.{js,jsx,scss} --fix"
   },
   "eslintConfig": {
     "plugins": [
