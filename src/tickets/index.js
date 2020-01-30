@@ -8,8 +8,8 @@ import 'normalize.css/normalize.css';
 import './index.scss';
 
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
-    document.getElementById('root')
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
 );
